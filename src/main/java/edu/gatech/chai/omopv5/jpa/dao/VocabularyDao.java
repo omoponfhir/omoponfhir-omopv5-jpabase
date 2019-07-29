@@ -14,11 +14,27 @@
  * limitations under the License.
  *
  *******************************************************************************/
-package edu.gatech.chai.smart.jpa.service;
+package edu.gatech.chai.omopv5.jpa.dao;
 
-import edu.gatech.chai.smart.jpa.entity.SmartLaunchContext;
+import org.springframework.stereotype.Repository;
 
-public interface SmartOnFhirLaunchContextService {
-	public SmartLaunchContext getContext(Long id);	
-	public void setContext(SmartLaunchContext context);
+import edu.gatech.chai.omopv5.model.entity.Vocabulary;
+
+@Repository
+public class VocabularyDao extends BaseEntityDao<Vocabulary> {
+
+	public Vocabulary findById(Class<Vocabulary> entityClass, String id) {
+		return getEntityManager().find(entityClass, id);
+	}
+
+	public String delete(Class<Vocabulary> entityClass, String id) {
+		Vocabulary entity = findById(entityClass, id);
+		if (entity != null) {
+			getEntityManager().remove(entity);
+			return id;
+		} else {
+			return null;
+		}
+	}
+
 }

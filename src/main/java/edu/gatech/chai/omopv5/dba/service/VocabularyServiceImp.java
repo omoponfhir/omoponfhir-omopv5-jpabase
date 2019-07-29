@@ -16,11 +16,20 @@
  *******************************************************************************/
 package edu.gatech.chai.omopv5.dba.service;
 
-import java.util.List;
+import edu.gatech.chai.omopv5.jpa.dao.VocabularyDao;
+import edu.gatech.chai.omopv5.model.entity.Vocabulary;
 
-import edu.gatech.chai.omopv5.model.entity.Concept;
+public class VocabularyServiceImp extends BaseEntityServiceImp<Vocabulary, VocabularyDao> implements VocabularyService {
 
-public interface ConceptService extends IService<Concept> {
-	public List<Concept> getIngredient(Concept concept);
-	public Concept getLargestId();
+	public VocabularyServiceImp() {
+		super(Vocabulary.class);
+	}
+	
+	public Vocabulary findById(String id) {
+		return getEntityDao().findById(getEntityClass(), id);
+	}
+
+	public String removeById(String id) {
+		return getEntityDao().delete(getEntityClass(), id);
+	}
 }

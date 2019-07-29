@@ -194,7 +194,9 @@ public abstract class BaseEntityServiceImp<T extends BaseEntity, V extends BaseE
 		query.where(builder.and(predicates.toArray(new Predicate[predicates.size()])));
 
 		// Sort		
-		query.orderBy(addSort(builder, root, sort));
+		if (sort != null) {
+			query.orderBy(addSort(builder, root, sort));
+		}
 
 		if (length <= 0) {
 			retvals = em.createQuery(query)

@@ -23,6 +23,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -38,17 +40,23 @@ public class Vocabulary extends BaseEntity {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="vocabulary_id", updatable=false)
+	@Column(name="vocabulary_id")
 	@Access(AccessType.PROPERTY)
 	private String id;
 	
-	@Column(name="vocabulary_name", updatable=false)
+	@Column(name="vocabulary_name")
 	private String name;
 	
-	@Column(name="vocabulary_reference", updatable=false)
+	@Column(name="vocabulary_reference")
 	private String vocabularyReference;
 	
-	
+	@Column(name="vocabulary_version")
+	private String vocabularyVersion;
+
+	@ManyToOne
+	@JoinColumn(name="vocabulary_concept_id")
+	private Concept vocabularyConcept;
+
 	public Vocabulary() {
 		super();
 	}
@@ -86,6 +94,22 @@ public class Vocabulary extends BaseEntity {
 	
 	public void setVocabularyReference(String vocabularyReference) {
 		this.vocabularyReference = vocabularyReference;
+	}
+
+	public String getVocabularyVersion() {
+		return vocabularyVersion;
+	}
+	
+	public void setVocabularyVersion(String vocabularyVersion) {
+		this.vocabularyVersion = vocabularyVersion;
+	}
+	
+	public Concept getVocabularyConcept() {
+		return vocabularyConcept;
+	}
+	
+	public void setVocabularyConcept(Concept vocabularyConcept) {
+		this.vocabularyConcept = vocabularyConcept;
 	}
 
 	// FIXME This is FHIR related. We may need to do this in the database. But, for quick
