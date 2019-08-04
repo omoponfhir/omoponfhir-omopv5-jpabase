@@ -22,5 +22,5 @@ import edu.gatech.chai.omopv5.model.entity.Concept;
 
 public interface ConceptService extends IService<Concept> {
 	public List<Concept> getIngredient(Concept concept);
-	public Concept getLargestId();
+	public Long getLargestId();
 }

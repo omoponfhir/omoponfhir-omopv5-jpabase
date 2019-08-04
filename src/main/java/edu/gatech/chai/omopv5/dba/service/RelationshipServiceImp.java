@@ -15,24 +15,28 @@
  *
  *******************************************************************************/
 package edu.gatech.chai.omopv5.dba.service;
-
 import org.springframework.stereotype.Service;
 
-import edu.gatech.chai.omopv5.jpa.dao.VocabularyDao;
-import edu.gatech.chai.omopv5.model.entity.Vocabulary;
+import edu.gatech.chai.omopv5.jpa.dao.RelationshipDao;
+import edu.gatech.chai.omopv5.model.entity.Relationship;
 
 @Service
-public class VocabularyServiceImp extends BaseEntityServiceImp<Vocabulary, VocabularyDao> implements VocabularyService {
+public class RelationshipServiceImp extends BaseEntityServiceImp<Relationship, RelationshipDao> implements RelationshipService{
 
-	public VocabularyServiceImp() {
-		super(Vocabulary.class);
+	public RelationshipServiceImp() {
+		super(Relationship.class);
 	}
-	
-	public Vocabulary findById(String id) {
+
+	@Override
+	public Relationship findById(String id) {
 		return getEntityDao().findById(getEntityClass(), id);
 	}
 
+	@Override
 	public String removeById(String id) {
 		return getEntityDao().delete(getEntityClass(), id);
 	}
+
+	
+	
 }

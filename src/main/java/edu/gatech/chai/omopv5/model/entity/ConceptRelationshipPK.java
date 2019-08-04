@@ -24,7 +24,13 @@ public class ConceptRelationshipPK implements Serializable {
     public ConceptRelationshipPK() {
     }
     
-	public Long getConcept1() {
+    public ConceptRelationshipPK(Long concept1, Long concept2, String relationshipId) {
+    	this.concept1 = concept1;
+    	this.concept2 = concept2;
+    	this.relationshipId = relationshipId;
+    }
+
+    public Long getConcept1() {
 		return this.concept1;
 	}
 	

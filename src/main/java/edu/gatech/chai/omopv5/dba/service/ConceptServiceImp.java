@@ -91,15 +91,16 @@ public class ConceptServiceImp extends BaseEntityServiceImp<Concept, ConceptDao>
 	}
 
 	@Override
-	public Concept getLargestId() {
+	public Long getLargestId() {
 		EntityManager em = getEntityDao().getEntityManager();
-		String sqlQuery = "SELECT c FROM Concept src ORDER BY id DESC LIMIT 1";
-		TypedQuery<Concept> query = em.createQuery(sqlQuery, Concept.class);
-		List<Concept> concepts = query.getResultList();
+		String sqlQuery = "SELECT id FROM Concept src ORDER BY id DESC";
+		TypedQuery<Long> query = em.createQuery(sqlQuery, Long.class);
+		query.setMaxResults(1);
+		List<Long> ret = query.getResultList();
 
-		if (concepts.size() == 0)
+		if (ret.size() == 0)
 			return null;
 		else
-			return concepts.get(0);
+			return ret.get(0);
 	}
 }

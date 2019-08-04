@@ -14,25 +14,27 @@
  * limitations under the License.
  *
  *******************************************************************************/
-package edu.gatech.chai.omopv5.dba.service;
+package edu.gatech.chai.omopv5.jpa.dao;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 
-import edu.gatech.chai.omopv5.jpa.dao.VocabularyDao;
-import edu.gatech.chai.omopv5.model.entity.Vocabulary;
+import edu.gatech.chai.omopv5.model.entity.Relationship;
 
-@Service
-public class VocabularyServiceImp extends BaseEntityServiceImp<Vocabulary, VocabularyDao> implements VocabularyService {
-
-	public VocabularyServiceImp() {
-		super(Vocabulary.class);
-	}
+@Repository
+public class RelationshipDao extends BaseEntityDao<Relationship> {
 	
-	public Vocabulary findById(String id) {
-		return getEntityDao().findById(getEntityClass(), id);
+	public Relationship findById(Class<Relationship> entityClass, String id) {
+		return getEntityManager().find(entityClass, id);
 	}
 
-	public String removeById(String id) {
-		return getEntityDao().delete(getEntityClass(), id);
+	public String delete(Class<Relationship> entityClass, String id) {
+		Relationship entity = findById(entityClass, id);
+		if (entity != null) {
+			getEntityManager().remove(entity);
+			return id;
+		} else {
+			return null;
+		}
 	}
+
 }

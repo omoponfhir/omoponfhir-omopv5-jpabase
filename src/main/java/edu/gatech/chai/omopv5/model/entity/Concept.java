@@ -22,8 +22,6 @@ import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -31,70 +29,65 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import net.jcip.annotations.Immutable;
-
 @Entity
-@Immutable
-@Table(name="concept")
-@Inheritance(strategy=InheritanceType.JOINED)
+@Table(name = "concept")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Concept extends BaseEntity {
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="concept_id", updatable=false)
+	@Column(name = "concept_id")
 	@Access(AccessType.PROPERTY)
 	private Long id;
-	
-	@Column(name="concept_name", updatable=false)
+
+	@Column(name = "concept_name")
 	private String name;
-	
+
 //	@ManyToOne
 //	@JoinColumn(name="domain_id", referencedColumnName="domain_id", insertable=false, updatable=false)
 //	private Domain domain;
-	
-	@Column(name="domain_id", updatable=false)
+
+	@Column(name = "domain_id")
 	private String domain;
 
-	@Column(name="concept_class_id", updatable=false)
+	@Column(name = "concept_class_id")
 	private String conceptClass;
-	
-	@Column(name="standard_concept", updatable=false)
+
+	@Column(name = "standard_concept")
 	private Character standardConcept;
-	
+
 	@ManyToOne
-	@JoinColumn(name="vocabulary_id", referencedColumnName="vocabulary_id", insertable=false, updatable=false)
+	@JoinColumn(name = "vocabulary_id", referencedColumnName="vocabulary_id")
 	private Vocabulary vocabulary;
-	
-	@Column(name="concept_code", updatable=false)
+
+	@Column(name = "concept_code")
 	private String conceptCode;
-	
-	@Column(name="valid_start_date", updatable=false)
+
+	@Column(name = "valid_start_date")
 	private Date validStartDate;
-	
-	@Column(name="valid_end_date", updatable=false)
+
+	@Column(name = "valid_end_date")
 	private Date validEndDate;
-	
-	@Column(name="invalid_reason", updatable=false)
+
+	@Column(name = "invalid_reason")
 	private String invalidReason;
 
 	public Concept() {
 		super();
 	}
-	
+
 	public Concept(Long id) {
 		super();
 		this.id = id;
 	}
-	
-	public Concept(Long id, String name){
+
+	public Concept(Long id, String name) {
 		super();
 		this.id = id;
 		this.name = name;
 	}
 
 	public Concept(Long id, String name, String domain, String conceptClass, Character standardConcept,
-			Vocabulary vocabulary, String conceptCode, Date validStartDate,
-			Date validEndDate, String invalidReason) {
+			Vocabulary vocabulary, String conceptCode, Date validStartDate, Date validEndDate, String invalidReason) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -143,11 +136,11 @@ public class Concept extends BaseEntity {
 	public Character getStandardConcept() {
 		return standardConcept;
 	}
-	
+
 	public void setStandardConcept(Character standardConcept) {
 		this.standardConcept = standardConcept;
 	}
-	
+
 	public Vocabulary getVocabulary() {
 		return vocabulary;
 	}
@@ -190,16 +183,11 @@ public class Concept extends BaseEntity {
 
 	@Override
 	public String toString() {
-		//Since this is an omop v.4 based model, all the information below is expected to be not null.
-		return this.getId() + ", "
-				+ this.getName() + ", "
-				+ this.getDomain() + ", "
-				+ this.getConceptClass() + ", "
-				+ this.getStandardConcept() + ", "
-				+ this.getVocabulary() + ", "
-				+ this.getConceptCode() + ", "
-				+ this.getValidStartDate() + ", "
-				+ this.getValidEndDate();
+		// Since this is an omop v.4 based model, all the information below is expected
+		// to be not null.
+		return this.getId() + ", " + this.getName() + ", " + this.getDomain() + ", " + this.getConceptClass() + ", "
+				+ this.getStandardConcept() + ", " + this.getVocabulary().getId() + ", " + this.getConceptCode() + ", "
+				+ this.getValidStartDate() + ", " + this.getValidEndDate();
 	}
 
 	@Override

@@ -29,7 +29,6 @@ import javax.persistence.Table;
 import net.jcip.annotations.Immutable;
 
 @Entity
-@Immutable
 @Table(name="concept_relationship")
 @Inheritance(strategy=InheritanceType.JOINED)
 public class ConceptRelationship extends BaseEntity implements Serializable {
