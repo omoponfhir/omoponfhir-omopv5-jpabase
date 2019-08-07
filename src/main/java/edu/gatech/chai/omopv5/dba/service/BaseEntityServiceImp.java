@@ -65,7 +65,11 @@ public abstract class BaseEntityServiceImp<T extends BaseEntity, V extends BaseE
 		CriteriaQuery<T> query = builder.createQuery(entityClass);
 		Root<T> root = query.from(entityClass);
 		
-		Path<String> path = root.get(column);
+		String[] columnPath = column.split("\\.");
+		Path<String> path = root.get(columnPath[0]);
+		for (int i=1; i<columnPath.length; i++) {
+			path = path.get(columnPath[i]);
+		}
 		Predicate where = builder.like(builder.lower(path), value.toLowerCase());
 
 		query.select(root);
@@ -75,6 +79,29 @@ public abstract class BaseEntityServiceImp<T extends BaseEntity, V extends BaseE
 		return retvals;	
 	}
 
+	@Transactional(readOnly = true)
+	public List<T> searchByColumnString(String column, Long value) {
+		EntityManager em = vDao.getEntityManager();
+		List<T> retvals = new ArrayList<T>();
+		
+		CriteriaBuilder builder = em.getCriteriaBuilder();
+		CriteriaQuery<T> query = builder.createQuery(entityClass);
+		Root<T> root = query.from(entityClass);
+		
+		String[] columnPath = column.split("\\.");
+		Path<String> path = root.get(columnPath[0]);
+		for (int i=1; i<columnPath.length; i++) {
+			path = path.get(columnPath[i]);
+		}
+		Predicate where = builder.equal(path, value);
+
+		query.select(root);
+		query.where(where);
+		
+		retvals = em.createQuery(query).getResultList();
+		return retvals;	
+	}
+	
 	@Transactional
 	public T create(T entity) {
 		vDao.add(entity);
