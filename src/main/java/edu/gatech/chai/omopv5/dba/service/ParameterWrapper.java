@@ -22,6 +22,8 @@ import java.util.Iterator;
 import java.util.List;
 
 import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Join;
 import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
@@ -30,6 +32,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import edu.gatech.chai.omopv5.model.entity.BaseEntity;
+import edu.gatech.chai.omopv5.model.entity.VisitOccurrence;
 
 /**
  * ParameterWrapper for database operations.
@@ -340,6 +343,12 @@ public class ParameterWrapper {
 				break;
 			}
 
+			if (subWhere == null) {
+				logger.error("where clause contains error");
+				where = null;
+				break;
+			}
+			
 			if (param.getUpperRelationship() != null && param.getUpperRelationship().equalsIgnoreCase("or")) {
 				if (where == null) where = builder.disjunction();
 				where = builder.or(where, subWhere);
@@ -369,8 +378,22 @@ public class ParameterWrapper {
 				.iterator(), valueIter = param.getValues().iterator(); (attributeIter.hasNext() || valueIter.hasNext())
 						&& operIter.hasNext();) {
 
-			if (attributeIter.hasNext())
+			if (attributeIter.hasNext()) {
 				attributeName = attributeIter.next();
+// TODO: 				
+//				// if attributename contains foreign table
+//				// Current version supports VisitOccurrence.
+//				String[] attributes = attributeName.split(":");
+//				if (attributes.length == 2) {
+//					attributeName = attributes[1];
+//					if ("VisitOccurrence".equals(attributes[0])) {
+//						
+//						Join<? extends BaseEntity, VisitOccurrence> visitOccurrenceJoin = rootUser.join(attributeName);
+//					} else {
+//						return null;
+//					}
+//				}
+			}
 			if (valueIter.hasNext())
 				valueName = valueIter.next();
 			String oper = operIter.next();
