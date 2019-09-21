@@ -55,9 +55,11 @@ public class Concept extends BaseEntity {
 	@Column(name = "standard_concept")
 	private Character standardConcept;
 
-	@ManyToOne
-	@JoinColumn(name = "vocabulary_id", referencedColumnName="vocabulary_id")
-	private Vocabulary vocabulary;
+//	@ManyToOne
+//	@JoinColumn(name = "vocabulary_id", referencedColumnName="vocabulary_id")
+//	private Vocabulary vocabulary;
+	@Column(name = "vocabulary_id")
+	private String vocabulary;
 
 	@Column(name = "concept_code")
 	private String conceptCode;
@@ -87,7 +89,7 @@ public class Concept extends BaseEntity {
 	}
 
 	public Concept(Long id, String name, String domain, String conceptClass, Character standardConcept,
-			Vocabulary vocabulary, String conceptCode, Date validStartDate, Date validEndDate, String invalidReason) {
+			String vocabulary, String conceptCode, Date validStartDate, Date validEndDate, String invalidReason) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -141,11 +143,11 @@ public class Concept extends BaseEntity {
 		this.standardConcept = standardConcept;
 	}
 
-	public Vocabulary getVocabulary() {
+	public String getVocabulary() {
 		return vocabulary;
 	}
 
-	public void setVocabulary(Vocabulary vocabulary) {
+	public void setVocabulary(String vocabulary) {
 		this.vocabulary = vocabulary;
 	}
 
@@ -186,7 +188,7 @@ public class Concept extends BaseEntity {
 		// Since this is an omop v.4 based model, all the information below is expected
 		// to be not null.
 		return this.getId() + ", " + this.getName() + ", " + this.getDomain() + ", " + this.getConceptClass() + ", "
-				+ this.getStandardConcept() + ", " + this.getVocabulary().getId() + ", " + this.getConceptCode() + ", "
+				+ this.getStandardConcept() + ", " + this.getVocabulary() + ", " + this.getConceptCode() + ", "
 				+ this.getValidStartDate() + ", " + this.getValidEndDate();
 	}
 

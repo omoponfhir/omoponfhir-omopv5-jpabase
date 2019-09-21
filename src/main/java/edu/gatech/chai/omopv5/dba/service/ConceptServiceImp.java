@@ -46,7 +46,7 @@ public class ConceptServiceImp extends BaseEntityServiceImp<Concept, ConceptDao>
 		}
 		
 		String sqlQuery = null;
-		if ("NDC".equals(concept.getVocabulary().getId())) {
+		if ("NDC".equals(concept.getVocabulary())) {
 			// Use JPQL
 			sqlQuery = "select c "
 					+ "FROM Concept src "
@@ -63,7 +63,7 @@ public class ConceptServiceImp extends BaseEntityServiceImp<Concept, ConceptDao>
 			        + "AND c.vocabulary = 'RxNorm' "
 			        + "AND c.conceptClass = 'Ingredient' "
 			        + "AND src.invalidReason is null";
-		} else if ("RxNorm".equals(concept.getVocabulary().getId())) {
+		} else if ("RxNorm".equals(concept.getVocabulary())) {
 			// when RxNorm.
 			sqlQuery = "select c "
 					+ "FROM Concept src " 
