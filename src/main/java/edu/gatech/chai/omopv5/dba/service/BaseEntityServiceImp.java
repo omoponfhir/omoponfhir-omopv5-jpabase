@@ -20,6 +20,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
+import javax.persistence.Table;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Order;
@@ -123,22 +125,24 @@ public abstract class BaseEntityServiceImp<T extends BaseEntity, V extends BaseE
 	public Long getSize() {
 		EntityManager em = vDao.getEntityManager();
 		CriteriaBuilder builder = em.getCriteriaBuilder();
-
-//		Table t = entityClass.getAnnotation(Table.class);
-//		if (t != null) {
-//			String tableName = t.name();
-//			String queryString = "SELECT p.reltuples AS approximate_row_count FROM pg_class p WHERE p.relname = :table_name";
-//			Query query = em.createNativeQuery(queryString);
-//			query = query.setParameter("table_name", tableName);
-//			float res = (float) query.getSingleResult();
-//			return (long) res;
-//		} else {
+		
+		String pgOptimized = System.getenv("PG_OPTIMIZED"); 
+		Table t = entityClass.getAnnotation(Table.class);
+		// reference: https://wiki.postgresql.org/wiki/Count_estimate
+		if (pgOptimized != null && "true".equalsIgnoreCase(pgOptimized) && t != null) {
+			String tableName = t.name();
+			String queryString = "SELECT p.reltuples AS approximate_row_count FROM pg_class p WHERE p.relname = :table_name";
+			Query query = em.createNativeQuery(queryString);
+			query = query.setParameter("table_name", tableName);
+			float res = (float) query.getSingleResult();
+			return (long) res;
+		} else {
 			CriteriaQuery<Long> query = builder.createQuery(Long.class);
 			Root<T> root = query.from(entityClass);
 	
 			query.select(builder.count(root));		
 			return em.createQuery(query).getSingleResult();		
-//		}
+		}
 	}
 
 	@Transactional(readOnly = true)
