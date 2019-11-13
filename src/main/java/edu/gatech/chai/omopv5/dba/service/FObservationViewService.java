@@ -22,8 +22,22 @@ import org.springframework.transaction.annotation.Transactional;
 
 import edu.gatech.chai.omopv5.model.entity.FObservationView;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Interface FObservationViewService.
+ */
 @Transactional
 public interface FObservationViewService extends IService<FObservationView> {
+	
+	/**
+	 * Find diastolic.
+	 *
+	 * @param conceptId the concept id
+	 * @param personId the person id
+	 * @param date the date
+	 * @param time the time
+	 * @return the f observation view
+	 */
 	public FObservationView findDiastolic (Long conceptId, Long personId, Date date, String time);
 
 }

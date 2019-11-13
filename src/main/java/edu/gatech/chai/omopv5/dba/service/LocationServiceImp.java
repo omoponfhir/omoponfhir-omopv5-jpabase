@@ -26,13 +26,23 @@ import org.springframework.transaction.annotation.Transactional;
 import edu.gatech.chai.omopv5.jpa.dao.LocationDao;
 import edu.gatech.chai.omopv5.model.entity.Location;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class LocationServiceImp.
+ */
 @Service
 public class LocationServiceImp extends BaseEntityServiceImp<Location, LocationDao> implements LocationService {
 
+	/**
+	 * Instantiates a new location service imp.
+	 */
 	public LocationServiceImp() {
 		super(Location.class);
 	}
 	
+	/* (non-Javadoc)
+	 * @see edu.gatech.chai.omopv5.dba.service.LocationService#searchByAddress(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)
+	 */
 	@Transactional(readOnly = true)
 	public Location searchByAddress(String line1, String line2, String city, String state, String zipCode) {
 		EntityManager em = getEntityDao().getEntityManager();

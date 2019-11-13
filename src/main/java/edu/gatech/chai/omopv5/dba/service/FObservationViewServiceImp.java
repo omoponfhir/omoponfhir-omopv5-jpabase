@@ -30,13 +30,23 @@ import org.springframework.stereotype.Service;
 import edu.gatech.chai.omopv5.jpa.dao.FObservationViewDao;
 import edu.gatech.chai.omopv5.model.entity.FObservationView;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class FObservationViewServiceImp.
+ */
 @Service
 public class FObservationViewServiceImp extends BaseEntityServiceImp<FObservationView, FObservationViewDao> implements FObservationViewService {
 
+	/**
+	 * Instantiates a new f observation view service imp.
+	 */
 	public FObservationViewServiceImp() {
 		super(FObservationView.class);
 	}
 	
+	/* (non-Javadoc)
+	 * @see edu.gatech.chai.omopv5.dba.service.FObservationViewService#findDiastolic(java.lang.Long, java.lang.Long, java.util.Date, java.lang.String)
+	 */
 	public FObservationView findDiastolic(Long conceptId, Long personId, Date date, String time) {
 		EntityManager em = getEntityDao().getEntityManager();
 		CriteriaBuilder builder = em.getCriteriaBuilder();

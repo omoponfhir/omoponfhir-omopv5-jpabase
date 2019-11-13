@@ -21,9 +21,17 @@ import org.springframework.stereotype.Service;
 import edu.gatech.chai.omopv5.jpa.dao.DrugExposureDao;
 import edu.gatech.chai.omopv5.model.entity.DrugExposure;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class DrugExposureServiceImp.
+ */
 @Service
 public class DrugExposureServiceImp extends BaseEntityServiceImp<DrugExposure, DrugExposureDao>
 		implements DrugExposureService {
+	
+	/**
+	 * Instantiates a new drug exposure service imp.
+	 */
 	public DrugExposureServiceImp() {
 		super(DrugExposure.class);
 	}

@@ -34,6 +34,7 @@ import org.slf4j.LoggerFactory;
 import edu.gatech.chai.omopv5.model.entity.BaseEntity;
 import edu.gatech.chai.omopv5.model.entity.VisitOccurrence;
 
+// TODO: Auto-generated Javadoc
 /**
  * ParameterWrapper for database operations.
  * 
@@ -72,17 +73,42 @@ import edu.gatech.chai.omopv5.model.entity.VisitOccurrence;
  */
 public class ParameterWrapper {
 
+	/** The Constant logger. */
 	private static final Logger logger = LoggerFactory.getLogger(ParameterWrapper.class);
+	
+	/** The parameter type. */
 	private String parameterType;
+	
+	/** The parameters. */
 	private List<String> parameters;
+	
+	/** The operators. */
 	private List<String> operators;
+	
+	/** The values. */
 	private List<String> values;
+	
+	/** The relationship. */
 	private String relationship;
+	
+	/** The upper relationship. */
 	private String upperRelationship;
 
+	/**
+	 * Instantiates a new parameter wrapper.
+	 */
 	public ParameterWrapper() {
 	}
 
+	/**
+	 * Instantiates a new parameter wrapper.
+	 *
+	 * @param parameterType the parameter type
+	 * @param parameters the parameters
+	 * @param operators the operators
+	 * @param values the values
+	 * @param relationship the relationship
+	 */
 	public ParameterWrapper(String parameterType, List<String> parameters, List<String> operators, List<String> values,
 			String relationship) {
 		this.parameterType = parameterType;
@@ -93,54 +119,122 @@ public class ParameterWrapper {
 		this.upperRelationship = null; // this is used only at the special case.
 	}
 
+	/**
+	 * Gets the parameter type.
+	 *
+	 * @return the parameter type
+	 */
 	public String getParameterType() {
 		return parameterType;
 	}
 
+	/**
+	 * Sets the parameter type.
+	 *
+	 * @param parameterType the new parameter type
+	 */
 	public void setParameterType(String parameterType) {
 		this.parameterType = parameterType;
 	}
 
+	/**
+	 * Gets the parameters.
+	 *
+	 * @return the parameters
+	 */
 	public List<String> getParameters() {
 		return parameters;
 	}
 
+	/**
+	 * Sets the parameters.
+	 *
+	 * @param parameters the new parameters
+	 */
 	public void setParameters(List<String> parameters) {
 		this.parameters = parameters;
 	}
 
+	/**
+	 * Gets the operators.
+	 *
+	 * @return the operators
+	 */
 	public List<String> getOperators() {
 		return operators;
 	}
 
+	/**
+	 * Sets the operators.
+	 *
+	 * @param operators the new operators
+	 */
 	public void setOperators(List<String> operators) {
 		this.operators = operators;
 	}
 
+	/**
+	 * Gets the values.
+	 *
+	 * @return the values
+	 */
 	public List<String> getValues() {
 		return values;
 	}
 
+	/**
+	 * Sets the values.
+	 *
+	 * @param values the new values
+	 */
 	public void setValues(List<String> values) {
 		this.values = values;
 	}
 
+	/**
+	 * Gets the relationship.
+	 *
+	 * @return the relationship
+	 */
 	public String getRelationship() {
 		return relationship;
 	}
 
+	/**
+	 * Sets the relationship.
+	 *
+	 * @param relationship the new relationship
+	 */
 	public void setRelationship(String relationship) {
 		this.relationship = relationship;
 	}
 
+	/**
+	 * Gets the upper relationship.
+	 *
+	 * @return the upper relationship
+	 */
 	public String getUpperRelationship() {
 		return upperRelationship;
 	}
 
+	/**
+	 * Sets the upper relationship.
+	 *
+	 * @param upperRelationship the new upper relationship
+	 */
 	public void setUpperRelationship(String upperRelationship) {
 		this.upperRelationship = upperRelationship;
 	}
 
+	/**
+	 * Construct predicate.
+	 *
+	 * @param builder the builder
+	 * @param paramList the param list
+	 * @param rootUser the root user
+	 * @return the list
+	 */
 	public static List<Predicate> constructPredicate(CriteriaBuilder builder, List<ParameterWrapper> paramList,
 			Root<? extends BaseEntity> rootUser) {
 		List<Predicate> predicates = new ArrayList<Predicate>();
@@ -365,6 +459,16 @@ public class ParameterWrapper {
 		return predicates;
 	}
 
+	/**
+	 * Numberic predicate buidler.
+	 *
+	 * @param builder the builder
+	 * @param param the param
+	 * @param rootUser the root user
+	 * @param subWhere the sub where
+	 * @param paramType the param type
+	 * @return the predicate
+	 */
 	public static Predicate numbericPredicateBuidler(CriteriaBuilder builder, ParameterWrapper param,
 			Root<? extends BaseEntity> rootUser, Predicate subWhere, String paramType) {
 		logger.debug("Numeric parameter type found.");

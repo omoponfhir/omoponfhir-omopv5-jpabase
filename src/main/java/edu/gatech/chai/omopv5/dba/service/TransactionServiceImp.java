@@ -33,20 +33,33 @@ import edu.gatech.chai.omopv5.model.entity.FPerson;
 import edu.gatech.chai.omopv5.model.entity.Measurement;
 import edu.gatech.chai.omopv5.model.entity.Observation;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class TransactionServiceImp.
+ */
 @Service
 public class TransactionServiceImp implements TransactionService {
 
 //	@Autowired
 //	private TransactionDao transactionDao;
 	
-	@Autowired
+	/** The person dao. */
+@Autowired
 	private FPersonDao fPersonDao;
+	
+	/** The condition dao. */
 	@Autowired
 	private ConditionOccurrenceDao conditionDao;
+	
+	/** The procedure dao. */
 	@Autowired
 	private ProcedureOccurrenceDao procedureDao;
+	
+	/** The measurement dao. */
 	@Autowired
 	private MeasurementDao measurementDao;
+	
+	/** The observation dao. */
 	@Autowired
 	private ObservationDao observationDao;
 
@@ -54,7 +67,10 @@ public class TransactionServiceImp implements TransactionService {
 //		return transactionDao;
 //	}
 	
-	@Transactional
+	/* (non-Javadoc)
+ * @see edu.gatech.chai.omopv5.dba.service.TransactionService#writeTransaction(java.util.Map)
+ */
+@Transactional
 	public int writeTransaction(Map<String, List<BaseEntity>> transactionMap) {
 //		EntityManager em = transactionDao.getEntityManager();
 

@@ -18,6 +18,9 @@ package edu.gatech.chai.omopv5.dba.service;
 
 import edu.gatech.chai.omopv5.model.entity.ProcedureOccurrence;
 
+/**
+ * The Interface ProcedureOccurrenceService.
+ */
 public interface ProcedureOccurrenceService extends IService<ProcedureOccurrence> {
 
 }

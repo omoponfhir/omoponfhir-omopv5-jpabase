@@ -28,12 +28,23 @@ import org.springframework.transaction.annotation.Transactional;
 import edu.gatech.chai.omopv5.jpa.dao.ConceptDao;
 import edu.gatech.chai.omopv5.model.entity.Concept;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ConceptServiceImp.
+ */
 @Service
 public class ConceptServiceImp extends BaseEntityServiceImp<Concept, ConceptDao> implements ConceptService {
+	
+	/**
+	 * Instantiates a new concept service imp.
+	 */
 	public ConceptServiceImp() {
 		super(Concept.class);
 	}
 	
+	/* (non-Javadoc)
+	 * @see edu.gatech.chai.omopv5.dba.service.ConceptService#getIngredient(edu.gatech.chai.omopv5.model.entity.Concept)
+	 */
 	@Transactional(readOnly = true)
 	public List<Concept> getIngredient(Concept concept) {
 		EntityManager em = getEntityDao().getEntityManager();
@@ -90,6 +101,9 @@ public class ConceptServiceImp extends BaseEntityServiceImp<Concept, ConceptDao>
 //		}
 	}
 
+	/* (non-Javadoc)
+	 * @see edu.gatech.chai.omopv5.dba.service.ConceptService#getLargestId()
+	 */
 	@Override
 	public Long getLargestId() {
 		EntityManager em = getEntityDao().getEntityManager();

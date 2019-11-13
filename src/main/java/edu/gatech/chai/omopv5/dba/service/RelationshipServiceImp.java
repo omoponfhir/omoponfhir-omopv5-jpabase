@@ -20,18 +20,31 @@ import org.springframework.stereotype.Service;
 import edu.gatech.chai.omopv5.jpa.dao.RelationshipDao;
 import edu.gatech.chai.omopv5.model.entity.Relationship;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class RelationshipServiceImp.
+ */
 @Service
 public class RelationshipServiceImp extends BaseEntityServiceImp<Relationship, RelationshipDao> implements RelationshipService{
 
+	/**
+	 * Instantiates a new relationship service imp.
+	 */
 	public RelationshipServiceImp() {
 		super(Relationship.class);
 	}
 
+	/* (non-Javadoc)
+	 * @see edu.gatech.chai.omopv5.dba.service.RelationshipService#findById(java.lang.String)
+	 */
 	@Override
 	public Relationship findById(String id) {
 		return getEntityDao().findById(getEntityClass(), id);
 	}
 
+	/* (non-Javadoc)
+	 * @see edu.gatech.chai.omopv5.dba.service.RelationshipService#removeById(java.lang.String)
+	 */
 	@Override
 	public String removeById(String id) {
 		return getEntityDao().delete(getEntityClass(), id);

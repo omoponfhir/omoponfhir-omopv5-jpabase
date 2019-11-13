@@ -43,8 +43,8 @@ import javax.persistence.TemporalType;
 		)
 public class Observation extends BaseEntity {
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="observation_occurrence_seq_gen")
-	@SequenceGenerator(name="observation_occurrence_seq_gen", sequenceName="observation_occurrence_id_seq", allocationSize=1)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="observation_seq_gen")
+	@SequenceGenerator(name="observation_seq_gen", sequenceName="observation_id_seq", allocationSize=1)
 	@Column(name = "observation_id")
 	@Access(AccessType.PROPERTY)
 	private Long id;

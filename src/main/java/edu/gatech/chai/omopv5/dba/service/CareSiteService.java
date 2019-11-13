@@ -19,7 +19,26 @@ package edu.gatech.chai.omopv5.dba.service;
 import edu.gatech.chai.omopv5.model.entity.CareSite;
 import edu.gatech.chai.omopv5.model.entity.Location;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Interface CareSiteService.
+ */
 public interface CareSiteService extends IService<CareSite> {
+	
+	/**
+	 * Search by location.
+	 *
+	 * @param location the location
+	 * @return the care site
+	 */
 	public CareSite searchByLocation(Location location);
+	
+	/**
+	 * Search by name and location.
+	 *
+	 * @param careSiteName the care site name
+	 * @param location the location
+	 * @return the care site
+	 */
 	public CareSite searchByNameAndLocation(String careSiteName, Location location);
 }

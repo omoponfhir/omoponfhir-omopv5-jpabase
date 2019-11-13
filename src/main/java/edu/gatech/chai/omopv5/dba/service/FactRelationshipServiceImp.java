@@ -14,14 +14,24 @@ import edu.gatech.chai.omopv5.model.entity.Concept;
 import edu.gatech.chai.omopv5.model.entity.FactRelationship;
 import edu.gatech.chai.omopv5.model.entity.Note;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class FactRelationshipServiceImp.
+ */
 @Service
 public class FactRelationshipServiceImp extends BaseEntityServiceImp<FactRelationship, FactRelationshipDao>
 		implements FactRelationshipService {
 
+	/**
+	 * Instantiates a new fact relationship service imp.
+	 */
 	public FactRelationshipServiceImp() {
 		super(FactRelationship.class);
 	}
 
+	/* (non-Javadoc)
+	 * @see edu.gatech.chai.omopv5.dba.service.FactRelationshipService#searchMeasurementUsingMethod(java.lang.Long)
+	 */
 	@Transactional(readOnly = true)
 	public <V extends BaseEntity> List<V> searchMeasurementUsingMethod(Long domainId) {
 		List<V> retVal = new ArrayList<V>();
@@ -56,6 +66,9 @@ public class FactRelationshipServiceImp extends BaseEntityServiceImp<FactRelatio
 		return retVal;
 	}
 
+	/* (non-Javadoc)
+	 * @see edu.gatech.chai.omopv5.dba.service.FactRelationshipService#searchMeasurementContainsComments(java.lang.Long)
+	 */
 	@Transactional(readOnly = true)
 	public List<Note> searchMeasurementContainsComments(Long domainId) {
 		List<Note> retVal = new ArrayList<Note>();
@@ -76,6 +89,9 @@ public class FactRelationshipServiceImp extends BaseEntityServiceImp<FactRelatio
 		return retVal;
 	}
 
+	/* (non-Javadoc)
+	 * @see edu.gatech.chai.omopv5.dba.service.FactRelationshipService#searchFactRelationship(java.lang.Long, java.lang.Long, java.lang.Long, java.lang.Long, java.lang.Long)
+	 */
 	@Transactional(readOnly = true)
 	public List<FactRelationship> searchFactRelationship(Long domainConcept1, Long factId1, Long domainConcept2,
 			Long factId2, Long relationshipId) {

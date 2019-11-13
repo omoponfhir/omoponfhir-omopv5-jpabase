@@ -21,9 +21,16 @@ import org.springframework.stereotype.Service;
 import edu.gatech.chai.omopv5.jpa.dao.VisitOccurrenceDao;
 import edu.gatech.chai.omopv5.model.entity.VisitOccurrence;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class VisitOccurrenceServiceImp.
+ */
 @Service
 public class VisitOccurrenceServiceImp extends BaseEntityServiceImp<VisitOccurrence, VisitOccurrenceDao> implements VisitOccurrenceService {
 
+	/**
+	 * Instantiates a new visit occurrence service imp.
+	 */
 	public VisitOccurrenceServiceImp() {
 		super(VisitOccurrence.class);
 	}

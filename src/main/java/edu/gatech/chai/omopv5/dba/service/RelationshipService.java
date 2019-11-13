@@ -18,8 +18,26 @@ package edu.gatech.chai.omopv5.dba.service;
 
 import edu.gatech.chai.omopv5.model.entity.Relationship;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Interface RelationshipService.
+ */
 public interface RelationshipService extends IService<Relationship> {
+	
+	/**
+	 * Find by id.
+	 *
+	 * @param id the id
+	 * @return the relationship
+	 */
 	public Relationship findById(String id);
+	
+	/**
+	 * Removes the by id.
+	 *
+	 * @param id the id
+	 * @return the string
+	 */
 	public String removeById(String id);
 
 }

@@ -28,13 +28,23 @@ import edu.gatech.chai.omopv5.jpa.dao.FPersonDao;
 import edu.gatech.chai.omopv5.model.entity.FPerson;
 import edu.gatech.chai.omopv5.model.entity.Location;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class FPersonServiceImp.
+ */
 @Service
 public class FPersonServiceImp extends BaseEntityServiceImp<FPerson, FPersonDao> implements FPersonService {
 
+	/**
+	 * Instantiates a new f person service imp.
+	 */
 	public FPersonServiceImp() {
 		super(FPerson.class);
 	}
 	
+	/* (non-Javadoc)
+	 * @see edu.gatech.chai.omopv5.dba.service.FPersonService#searchByNameAndLocation(java.lang.String, java.lang.String, java.lang.String, edu.gatech.chai.omopv5.model.entity.Location)
+	 */
 	@Transactional(readOnly = true)
 	public FPerson searchByNameAndLocation(String familyName, String given1Name, String given2Name, Location location) {
 		EntityManager em = getEntityDao().getEntityManager();

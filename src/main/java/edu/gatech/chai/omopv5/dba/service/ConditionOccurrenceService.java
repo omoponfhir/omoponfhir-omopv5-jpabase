@@ -18,5 +18,8 @@ package edu.gatech.chai.omopv5.dba.service;
 
 import edu.gatech.chai.omopv5.model.entity.ConditionOccurrence;
 
+/**
+ * The Interface ConditionOccurrenceService.
+ */
 public interface ConditionOccurrenceService extends IService<ConditionOccurrence>{
 }

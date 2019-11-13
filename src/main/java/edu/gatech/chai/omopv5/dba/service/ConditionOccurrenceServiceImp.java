@@ -21,9 +21,17 @@ import edu.gatech.chai.omopv5.model.entity.ConditionOccurrence;
 
 import org.springframework.stereotype.Service;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ConditionOccurrenceServiceImp.
+ */
 @Service
 public class ConditionOccurrenceServiceImp extends BaseEntityServiceImp<ConditionOccurrence, ConditionOccurrenceDao>
         implements ConditionOccurrenceService{
+    
+    /**
+     * Instantiates a new condition occurrence service imp.
+     */
     public ConditionOccurrenceServiceImp() {
         super(ConditionOccurrence.class);
     }

@@ -18,5 +18,8 @@ package edu.gatech.chai.omopv5.dba.service;
 
 import edu.gatech.chai.omopv5.model.entity.Provider;
 
+/**
+ * The Interface ProviderService.
+ */
 public interface ProviderService extends IService<Provider> {
 }

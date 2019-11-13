@@ -21,10 +21,17 @@ import org.springframework.stereotype.Service;
 import edu.gatech.chai.omopv5.jpa.dao.ProcedureOccurrenceDao;
 import edu.gatech.chai.omopv5.model.entity.ProcedureOccurrence;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ProcedureOccurrenceServiceImp.
+ */
 @Service
 public class ProcedureOccurrenceServiceImp extends BaseEntityServiceImp<ProcedureOccurrence, ProcedureOccurrenceDao>
 		implements ProcedureOccurrenceService {
 
+	/**
+	 * Instantiates a new procedure occurrence service imp.
+	 */
 	public ProcedureOccurrenceServiceImp() {
 		super(ProcedureOccurrence.class);
 	}

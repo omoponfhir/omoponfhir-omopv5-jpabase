@@ -18,7 +18,25 @@ package edu.gatech.chai.omopv5.dba.service;
 
 import edu.gatech.chai.omopv5.model.entity.Vocabulary;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Interface VocabularyService.
+ */
 public interface VocabularyService extends IService<Vocabulary> {
+	
+	/**
+	 * Find by id.
+	 *
+	 * @param id the id
+	 * @return the vocabulary
+	 */
 	public Vocabulary findById(String id);
+	
+	/**
+	 * Removes the by id.
+	 *
+	 * @param id the id
+	 * @return the string
+	 */
 	public String removeById(String id);
 }

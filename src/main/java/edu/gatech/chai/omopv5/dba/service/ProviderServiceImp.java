@@ -21,9 +21,16 @@ import org.springframework.stereotype.Service;
 import edu.gatech.chai.omopv5.jpa.dao.ProviderDao;
 import edu.gatech.chai.omopv5.model.entity.Provider;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ProviderServiceImp.
+ */
 @Service
 public class ProviderServiceImp extends BaseEntityServiceImp<Provider, ProviderDao> implements ProviderService {
 
+  /**
+   * Instantiates a new provider service imp.
+   */
   public ProviderServiceImp() {
 		super(Provider.class);
 	}

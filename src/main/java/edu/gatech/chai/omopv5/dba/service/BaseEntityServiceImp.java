@@ -22,6 +22,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.persistence.Table;
+import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Order;
@@ -35,29 +36,60 @@ import org.springframework.transaction.annotation.Transactional;
 import edu.gatech.chai.omopv5.jpa.dao.BaseEntityDao;
 import edu.gatech.chai.omopv5.model.entity.BaseEntity;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class BaseEntityServiceImp.
+ *
+ * @param <T> the generic BaseEntity type
+ * @param <V> the generic BaseEntityDao type
+ */
 public abstract class BaseEntityServiceImp<T extends BaseEntity, V extends BaseEntityDao<T>>  implements IService<T> {
 
+	/** The v dao. */
 	@Autowired
 	private V vDao;
+	
+	/** The entity class. */
 	private Class<T> entityClass;
 	
+	/**
+	 * Instantiates a new base entity service imp.
+	 *
+	 * @param entityClass the entity class
+	 */
 	public BaseEntityServiceImp(Class<T> entityClass) {
 		this.entityClass = entityClass;
 	}
 	
+	/**
+	 * Gets the entity dao.
+	 *
+	 * @return the entity dao
+	 */
 	public V getEntityDao() {
 		return vDao;
 	}
 	
+	/**
+	 * Gets the entity class.
+	 *
+	 * @return the entity class
+	 */
 	public Class<T> getEntityClass() {
 		return this.entityClass;
 	}
 	
+	/* (non-Javadoc)
+	 * @see edu.gatech.chai.omopv5.dba.service.IService#findById(java.lang.Long)
+	 */
 	@Transactional(readOnly = true)
 	public T findById(Long id) {
 		return vDao.findById(entityClass, id);
 	}
 
+	/* (non-Javadoc)
+	 * @see edu.gatech.chai.omopv5.dba.service.IService#searchByColumnString(java.lang.String, java.lang.String)
+	 */
 	@Transactional(readOnly = true)
 	public List<T> searchByColumnString(String column, String value) {
 		EntityManager em = vDao.getEntityManager();
@@ -81,6 +113,9 @@ public abstract class BaseEntityServiceImp<T extends BaseEntity, V extends BaseE
 		return retvals;	
 	}
 
+	/* (non-Javadoc)
+	 * @see edu.gatech.chai.omopv5.dba.service.IService#searchByColumnString(java.lang.String, java.lang.Long)
+	 */
 	@Transactional(readOnly = true)
 	public List<T> searchByColumnString(String column, Long value) {
 		EntityManager em = vDao.getEntityManager();
@@ -104,23 +139,35 @@ public abstract class BaseEntityServiceImp<T extends BaseEntity, V extends BaseE
 		return retvals;	
 	}
 	
+	/* (non-Javadoc)
+	 * @see edu.gatech.chai.omopv5.dba.service.IService#create(edu.gatech.chai.omopv5.model.entity.BaseEntity)
+	 */
 	@Transactional
 	public T create(T entity) {
 		vDao.add(entity);
 		return entity;
 	}
 	
+	/* (non-Javadoc)
+	 * @see edu.gatech.chai.omopv5.dba.service.IService#removeById(java.lang.Long)
+	 */
 	@Transactional
 	public Long removeById(Long id) {
 		return vDao.delete(entityClass, id);
 	}
 
+	/* (non-Javadoc)
+	 * @see edu.gatech.chai.omopv5.dba.service.IService#update(edu.gatech.chai.omopv5.model.entity.BaseEntity)
+	 */
 	@Transactional
 	public T update(T entity) {
 		vDao.merge(entity);
 		return entity;
 	}
 	
+	/* (non-Javadoc)
+	 * @see edu.gatech.chai.omopv5.dba.service.IService#getSize()
+	 */
 	@Transactional(readOnly = true)
 	public Long getSize() {
 		EntityManager em = vDao.getEntityManager();
@@ -145,6 +192,9 @@ public abstract class BaseEntityServiceImp<T extends BaseEntity, V extends BaseE
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see edu.gatech.chai.omopv5.dba.service.IService#getSize(java.util.List)
+	 */
 	@Transactional(readOnly = true)
 	public Long getSize(List<ParameterWrapper> paramList) {
 		// Construct predicate from this map.
@@ -162,6 +212,14 @@ public abstract class BaseEntityServiceImp<T extends BaseEntity, V extends BaseE
 		return em.createQuery(query).getSingleResult();
 	}
 	
+	/**
+	 * Adds the sort.
+	 *
+	 * @param builder the builder
+	 * @param root the root
+	 * @param sort the sort
+	 * @return the list
+	 */
 	protected List<Order> addSort (CriteriaBuilder builder, Root<T> root, String sort) {
 		List<Order> orders = new ArrayList<Order>();
 		if (sort != null && !sort.isEmpty()) {
@@ -181,6 +239,9 @@ public abstract class BaseEntityServiceImp<T extends BaseEntity, V extends BaseE
 		return orders;
 	}
 	
+	/* (non-Javadoc)
+	 * @see edu.gatech.chai.omopv5.dba.service.IService#searchWithoutParams(int, int, java.lang.String)
+	 */
 	@Transactional(readOnly = true)
 	public List<T> searchWithoutParams(int fromIndex, int toIndex, String sort) {
 		int length = toIndex - fromIndex;
@@ -200,6 +261,10 @@ public abstract class BaseEntityServiceImp<T extends BaseEntity, V extends BaseE
 			retvals = em.createQuery(query)
 					.getResultList();
 		} else {
+//			TypedQuery<T> sq = em.createQuery(query);
+//			String queryString = sq.unwrap(org.hibernate.query.Query.class).getQueryString();
+//			System.out.println("TESTING for QUERY:"+queryString);
+//
 			retvals = em.createQuery(query)
 					.setFirstResult(fromIndex)
 					.setMaxResults(length)
@@ -208,6 +273,9 @@ public abstract class BaseEntityServiceImp<T extends BaseEntity, V extends BaseE
 		return retvals;	
 	}
 
+	/* (non-Javadoc)
+	 * @see edu.gatech.chai.omopv5.dba.service.IService#searchWithParams(int, int, java.util.List, java.lang.String)
+	 */
 	@Transactional(readOnly = true)
 	public List<T> searchWithParams(int fromIndex, int toIndex, List<ParameterWrapper> paramList, String sort) {
 		int length = toIndex - fromIndex;

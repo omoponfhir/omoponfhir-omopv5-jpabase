@@ -20,7 +20,24 @@ import java.util.List;
 
 import edu.gatech.chai.omopv5.model.entity.Concept;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Interface ConceptService.
+ */
 public interface ConceptService extends IService<Concept> {
+	
+	/**
+	 * Gets the ingredient.
+	 *
+	 * @param concept the concept
+	 * @return the ingredient
+	 */
 	public List<Concept> getIngredient(Concept concept);
+	
+	/**
+	 * Gets the largest id.
+	 *
+	 * @return the largest id
+	 */
 	public Long getLargestId();
 }

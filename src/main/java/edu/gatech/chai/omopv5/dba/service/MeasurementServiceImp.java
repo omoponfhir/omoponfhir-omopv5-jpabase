@@ -21,9 +21,16 @@ import org.springframework.stereotype.Service;
 import edu.gatech.chai.omopv5.jpa.dao.MeasurementDao;
 import edu.gatech.chai.omopv5.model.entity.Measurement;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class MeasurementServiceImp.
+ */
 @Service
 public class MeasurementServiceImp extends BaseEntityServiceImp<Measurement, MeasurementDao> implements MeasurementService {
 
+	/**
+	 * Instantiates a new measurement service imp.
+	 */
 	public MeasurementServiceImp() {
 		super(Measurement.class);
 	}

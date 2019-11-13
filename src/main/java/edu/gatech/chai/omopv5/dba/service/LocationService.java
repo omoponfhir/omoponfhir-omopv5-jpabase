@@ -18,6 +18,21 @@ package edu.gatech.chai.omopv5.dba.service;
 
 import edu.gatech.chai.omopv5.model.entity.Location;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Interface LocationService.
+ */
 public interface LocationService extends IService<Location> {
+	
+	/**
+	 * Search by address.
+	 *
+	 * @param line1 the line 1
+	 * @param line2 the line 2
+	 * @param city the city
+	 * @param state the state
+	 * @param zipCode the zip code
+	 * @return the location
+	 */
 	public Location searchByAddress(String line1, String line2, String city, String state, String zipCode);
 }

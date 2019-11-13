@@ -21,17 +21,30 @@ import org.springframework.stereotype.Service;
 import edu.gatech.chai.omopv5.jpa.dao.VocabularyDao;
 import edu.gatech.chai.omopv5.model.entity.Vocabulary;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class VocabularyServiceImp.
+ */
 @Service
 public class VocabularyServiceImp extends BaseEntityServiceImp<Vocabulary, VocabularyDao> implements VocabularyService {
 
+	/**
+	 * Instantiates a new vocabulary service imp.
+	 */
 	public VocabularyServiceImp() {
 		super(Vocabulary.class);
 	}
 	
+	/* (non-Javadoc)
+	 * @see edu.gatech.chai.omopv5.dba.service.VocabularyService#findById(java.lang.String)
+	 */
 	public Vocabulary findById(String id) {
 		return getEntityDao().findById(getEntityClass(), id);
 	}
 
+	/* (non-Javadoc)
+	 * @see edu.gatech.chai.omopv5.dba.service.VocabularyService#removeById(java.lang.String)
+	 */
 	public String removeById(String id) {
 		return getEntityDao().delete(getEntityClass(), id);
 	}

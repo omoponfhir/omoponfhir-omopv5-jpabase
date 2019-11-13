@@ -28,13 +28,23 @@ import edu.gatech.chai.omopv5.jpa.dao.CareSiteDao;
 import edu.gatech.chai.omopv5.model.entity.CareSite;
 import edu.gatech.chai.omopv5.model.entity.Location;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class CareSiteServiceImp.
+ */
 @Service
 public class CareSiteServiceImp extends BaseEntityServiceImp<CareSite, CareSiteDao> implements CareSiteService{
 	
+	/**
+	 * Instantiates a new care site service imp.
+	 */
 	public CareSiteServiceImp() {
 		super(CareSite.class);
 	}
 	
+	/* (non-Javadoc)
+	 * @see edu.gatech.chai.omopv5.dba.service.CareSiteService#searchByLocation(edu.gatech.chai.omopv5.model.entity.Location)
+	 */
 	@Transactional(readOnly = true)
 	public CareSite searchByLocation(Location location) {
 		EntityManager em = getEntityDao().getEntityManager();
@@ -47,6 +57,9 @@ public class CareSiteServiceImp extends BaseEntityServiceImp<CareSite, CareSiteD
 			return null;
 	}
 
+	/* (non-Javadoc)
+	 * @see edu.gatech.chai.omopv5.dba.service.CareSiteService#searchByNameAndLocation(java.lang.String, edu.gatech.chai.omopv5.model.entity.Location)
+	 */
 	@Transactional(readOnly = true)
 	public CareSite searchByNameAndLocation(String careSiteName, Location location) {
 		EntityManager em = getEntityDao().getEntityManager();

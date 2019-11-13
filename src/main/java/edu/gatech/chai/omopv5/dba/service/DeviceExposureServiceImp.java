@@ -21,10 +21,17 @@ import org.springframework.stereotype.Service;
 import edu.gatech.chai.omopv5.jpa.dao.DeviceExposureDao;
 import edu.gatech.chai.omopv5.model.entity.DeviceExposure;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class DeviceExposureServiceImp.
+ */
 @Service
 public class DeviceExposureServiceImp extends BaseEntityServiceImp<DeviceExposure, DeviceExposureDao>
 		implements DeviceExposureService {
 
+	/**
+	 * Instantiates a new device exposure service imp.
+	 */
 	public DeviceExposureServiceImp() {
 		super(DeviceExposure.class);
 	}

@@ -21,6 +21,17 @@ import java.util.Map;
 
 import edu.gatech.chai.omopv5.model.entity.BaseEntity;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Interface TransactionService.
+ */
 public interface TransactionService {
+	
+	/**
+	 * Write transaction.
+	 *
+	 * @param transactionMap the transaction map
+	 * @return the int
+	 */
 	public int writeTransaction (Map<String, List<BaseEntity>> transactionMap);
 }

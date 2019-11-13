@@ -21,9 +21,16 @@ import org.springframework.stereotype.Service;
 import edu.gatech.chai.omopv5.jpa.dao.NoteDao;
 import edu.gatech.chai.omopv5.model.entity.Note;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class NoteServiceImp.
+ */
 @Service
 public class NoteServiceImp extends BaseEntityServiceImp<Note, NoteDao> implements NoteService {
 
+	/**
+	 * Instantiates a new note service imp.
+	 */
 	public NoteServiceImp() {
 		super(Note.class);
 	}

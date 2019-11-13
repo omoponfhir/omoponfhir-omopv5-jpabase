@@ -18,6 +18,9 @@ package edu.gatech.chai.omopv5.dba.service;
 
 import edu.gatech.chai.omopv5.model.entity.DeviceExposure;
 
+/**
+ * The Interface DeviceExposureService.
+ */
 public interface DeviceExposureService extends IService<DeviceExposure> {
 
 }

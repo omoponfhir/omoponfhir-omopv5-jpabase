@@ -18,6 +18,9 @@ package edu.gatech.chai.omopv5.dba.service;
 
 import edu.gatech.chai.omopv5.model.entity.Observation;
 
+/**
+ * The Interface ObservationService.
+ */
 public interface ObservationService extends IService<Observation> {
 	
 }

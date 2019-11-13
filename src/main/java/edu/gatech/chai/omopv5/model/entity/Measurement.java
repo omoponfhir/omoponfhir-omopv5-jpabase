@@ -43,8 +43,8 @@ import javax.persistence.TemporalType;
 		)
 public class Measurement extends BaseEntity {
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="measurement_occurrence_seq_gen")
-	@SequenceGenerator(name="measurement_occurrence_seq_gen", sequenceName="measurement_occurrence_id_seq", allocationSize=1)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="measurement_seq_gen")
+	@SequenceGenerator(name="measurement_seq_gen", sequenceName="measurement_id_seq", allocationSize=1)
 	@Column(name = "measurement_id")
 	@Access(AccessType.PROPERTY)
 	private Long id;

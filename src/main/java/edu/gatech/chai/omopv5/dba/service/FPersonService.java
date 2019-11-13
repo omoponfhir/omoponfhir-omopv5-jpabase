@@ -20,6 +20,20 @@ package edu.gatech.chai.omopv5.dba.service;
 import edu.gatech.chai.omopv5.model.entity.FPerson;
 import edu.gatech.chai.omopv5.model.entity.Location;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Interface FPersonService.
+ */
 public interface FPersonService extends IService<FPerson> {
+	
+	/**
+	 * Search by name and location.
+	 *
+	 * @param familyName the family name
+	 * @param given1Name the given 1 name
+	 * @param given2Name the given 2 name
+	 * @param location the location
+	 * @return the f person
+	 */
 	public FPerson searchByNameAndLocation(String familyName, String given1Name, String given2Name, Location location);
 }
