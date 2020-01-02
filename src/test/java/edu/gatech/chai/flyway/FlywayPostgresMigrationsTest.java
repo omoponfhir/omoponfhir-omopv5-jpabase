@@ -113,6 +113,27 @@ public class FlywayPostgresMigrationsTest {
         assertEquals("Ensure we have a view", true, resultSet.getString("TABLE_TYPE").equals("VIEW"));
     }
 
+    @Test
+    public void testIdMapping() throws Exception {
+        // Check the table exists
+        ResultSet resultSet = performQuery(postgres, "SELECT * from id_mapping");
+
+        // Count the number of columns
+        assertEquals("Ensure we have the correct number of columns", 4, resultSet.getMetaData().getColumnCount());
+
+        // Check the index was created
+        resultSet = getTableIndices(postgres, "id_mapping");
+
+        boolean indexExists = false;
+        while (resultSet.next()) {
+            if (resultSet.getString("INDEX_NAME").equals("id_mapping_pkey")) {
+                indexExists = true;
+            }
+        }
+
+        assertEquals("Ensure index exists", true, indexExists);
+    }
+
     @AfterAll
     public static void cleanup() {
         if (datasource != null) {
