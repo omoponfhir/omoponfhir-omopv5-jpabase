@@ -4,11 +4,14 @@ $$
         DECLARE
         obs_time_exists     boolean := false;
         obs_time_col_string varchar := '';
+        measurement_time_exists     boolean := false;
+        measurement_col_string varchar := '';
     BEGIN
         SELECT EXISTS(SELECT table_name
                       FROM information_schema.columns
                       WHERE table_name = 'observation'
-                        AND column_name = 'observation_time')
+                        AND column_name = 'observation_time'
+                        AND table_schema = current_schema())
         into obs_time_exists;
 
         CASE WHEN obs_time_exists = TRUE
@@ -18,13 +21,27 @@ $$
                 obs_time_col_string = 'observation.observation_datetime::timestamp::time::varchar(10)';
             END CASE;
 
+        SELECT EXISTS(SELECT table_name
+                      FROM information_schema.columns
+                      WHERE table_name = 'measurement'
+                        AND column_name = 'measurement_time'
+                        AND table_schema = current_schema())
+        into measurement_time_exists;
+
+        CASE WHEN measurement_time_exists = TRUE
+            THEN
+                measurement_col_string = 'measurement_time';
+            ELSE
+                measurement_col_string = 'measurement.measurement_datetime::timestamp::time::varchar(10)';
+            END CASE;
+
         EXECUTE $sql$
 		CREATE view f_observation_view AS
 		 SELECT measurement.measurement_id                AS observation_id,
 		        measurement.person_id,
 		        measurement.measurement_concept_id        AS observation_concept_id,
 		        measurement.measurement_date              AS observation_date,
-		        measurement.measurement_time              AS observation_time,
+		        $sql$ || measurement_col_string || $sql$  AS observation_time,
 		        measurement.measurement_type_concept_id   AS observation_type_concept_id,
 		        measurement.operator_concept_id           AS observation_operator_concept_id,
 		        measurement.value_as_number,
