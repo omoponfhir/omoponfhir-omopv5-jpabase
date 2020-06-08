@@ -49,17 +49,17 @@ public class Concept extends BaseEntity {
 	@Column(name = "domain_id")
 	private String domain;
 
-	@Column(name = "concept_class_id")
-	private String conceptClass;
-
-	@Column(name = "standard_concept")
-	private Character standardConcept;
-
 //	@ManyToOne
 //	@JoinColumn(name = "vocabulary_id", referencedColumnName="vocabulary_id")
 //	private Vocabulary vocabulary;
 	@Column(name = "vocabulary_id")
 	private String vocabulary;
+
+	@Column(name = "concept_class_id")
+	private String conceptClass;
+
+	@Column(name = "standard_concept")
+	private Character standardConcept;
 
 	@Column(name = "concept_code")
 	private String conceptCode;
