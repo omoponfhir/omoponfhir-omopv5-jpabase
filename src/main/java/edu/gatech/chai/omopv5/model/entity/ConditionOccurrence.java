@@ -29,6 +29,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name="condition_occurrence")
@@ -50,10 +52,20 @@ public class ConditionOccurrence extends BaseEntity{
 	private Concept conceptId;
 	
 	@Column(name="condition_start_date", nullable = false)
+	@Temporal(TemporalType.DATE)
 	private Date startDate;
 
+	@Column(name="condition_start_datetime")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date startDateTime;
+
 	@Column(name="condition_end_date")
+	@Temporal(TemporalType.DATE)
 	private Date endDate;
+
+	@Column(name="condition_end_datetime")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date endDateTime;
 
 	@ManyToOne
 	@JoinColumn(name = "condition_type_concept_id", nullable = false)
@@ -110,12 +122,28 @@ public class ConditionOccurrence extends BaseEntity{
 		this.startDate = startDate;
 	}
 
+	public Date getStartDateTime() {
+		return startDateTime;
+	}
+
+	public void setStartDateTime(Date startDateTime) {
+		this.startDateTime = startDateTime;
+	}
+
 	public Date getEndDate() {
 		return endDate;
 	}
 
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
+	}
+
+	public Date getEndDateTime() {
+		return endDateTime;
+	}
+
+	public void setEndDateTime(Date endDateTime) {
+		this.endDateTime = endDateTime;
 	}
 
 	public Concept getTypeConceptId() {

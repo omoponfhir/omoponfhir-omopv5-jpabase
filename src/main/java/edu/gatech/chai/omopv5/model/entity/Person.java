@@ -16,6 +16,8 @@
  *******************************************************************************/
 package edu.gatech.chai.omopv5.model.entity;
 
+import java.sql.Date;
+
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Column;
@@ -62,8 +64,8 @@ public class Person extends BaseEntity {
 	@Column(name="day_of_birth")
 	private Integer dayOfBirth;
 	
-	@Column(name="time_of_birth")
-	private String timeOfBirth;
+	@Column(name="birth_datetime")
+	private Date birthDateTime;
 	
 	@ManyToOne
 	@JoinColumn(name="race_concept_id")
@@ -126,7 +128,7 @@ public class Person extends BaseEntity {
 	}
 
 	public Person(Long id, Concept genderConcept, Integer yearOfBirth, Integer monthOfBirth,
-			Integer dayOfBirth, String timeOfBirth, Concept raceConcept, Concept ethnicityConcept, 
+			Integer dayOfBirth, Date birthDateTime, Concept raceConcept, Concept ethnicityConcept, 
 			Location location, Provider provider, CareSite careSite, String personSourceValue,
 			String genderSourceValue, Concept genderSourceConcept, String raceSourceValue,
 			Concept raceSourceConcept, String ethnicitySourceValue, Concept ethnicitySourceConcept) {
@@ -136,7 +138,7 @@ public class Person extends BaseEntity {
 		this.yearOfBirth = yearOfBirth;
 		this.monthOfBirth = monthOfBirth;
 		this.dayOfBirth = dayOfBirth;
-		this.timeOfBirth = timeOfBirth;
+		this.birthDateTime = birthDateTime;
 		this.raceConcept = raceConcept;
 		this.ethnicityConcept = ethnicityConcept;
 		this.location = location;
@@ -191,12 +193,12 @@ public class Person extends BaseEntity {
 		this.dayOfBirth = dayOfBirth;
 	}
 	
-	public String getTimeOfBirth() {
-		return timeOfBirth;
+	public Date getBirthDateTime() {
+		return birthDateTime;
 	}
 	
-	public void setTimeOfBirth(String timeOfBirth) {
-		this.timeOfBirth = timeOfBirth;
+	public void setBirthDateTime(Date birthDateTime) {
+		this.birthDateTime = birthDateTime;
 	}
 
 	public Concept getRaceConcept() {

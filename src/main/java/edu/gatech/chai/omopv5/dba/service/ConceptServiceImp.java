@@ -51,13 +51,13 @@ public class ConceptServiceImp extends BaseEntityServiceImp<Concept, ConceptDao>
 		
 		List<Concept> concepts = new ArrayList<Concept>();
 		
-		if ("Ingredient".equals(concept.getConceptClass())) {
+		if ("Ingredient".equals(concept.getConceptClassId())) {
 			// This is ingredient. Just return null
 			return concepts;
 		}
 		
 		String sqlQuery = null;
-		if ("NDC".equals(concept.getVocabulary())) {
+		if ("NDC".equals(concept.getVocabularyId())) {
 			// Use JPQL
 			sqlQuery = "select c "
 					+ "FROM Concept src "
@@ -71,19 +71,19 @@ public class ConceptServiceImp extends BaseEntityServiceImp<Concept, ConceptDao>
 			        + "JOIN Concept c ON ca.ancestorConcept = c.id "
 			        + "WHERE src.conceptCode = :med_code "
 			        + "AND 'NDC' = src.vocabulary "
-			        + "AND c.vocabulary = 'RxNorm' "
-			        + "AND c.conceptClass = 'Ingredient' "
+			        + "AND c.vocabularyId = 'RxNorm' "
+			        + "AND c.conceptClassId = 'Ingredient' "
 			        + "AND src.invalidReason is null";
-		} else if ("RxNorm".equals(concept.getVocabulary())) {
+		} else if ("RxNorm".equals(concept.getVocabularyId())) {
 			// when RxNorm.
 			sqlQuery = "select c "
 					+ "FROM Concept src " 
 					+ "JOIN ConceptAncestor ca ON ca.descendantConcept = src.id "
 					+ "JOIN Concept c ON ca.ancestorConcept = c.id "
 					+ "WHERE src.conceptCode = :med_code "
-					+ "AND 'RxNorm' = src.vocabulary "
-					+ "AND c.vocabulary = 'RxNorm' "
-					+ "AND c.conceptClass = 'Ingredient' "
+					+ "AND 'RxNorm' = src.vocabularyId "
+					+ "AND c.vocabularyId = 'RxNorm' "
+					+ "AND c.conceptClassId = 'Ingredient' "
 					+ "AND src.invalidReason is null "
 					+ "AND c.invalidReason is null";
 		} else {

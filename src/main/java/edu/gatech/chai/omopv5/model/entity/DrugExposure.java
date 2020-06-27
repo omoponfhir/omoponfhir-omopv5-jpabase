@@ -29,6 +29,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name="drug_exposure")
@@ -49,13 +51,6 @@ public class DrugExposure extends BaseEntity {
 	@ManyToOne()
 	@JoinColumn(name = "route_concept_id")
 	private Concept routeConcept;
-	
-	@Column(name = "effective_drug_dose")
-	private Double effectiveDrugDose;
-	
-	@ManyToOne()
-	@JoinColumn(name = "dose_unit_concept_id")
-	private Concept doseUnitConcept;
 	
 	@Column(name = "lot_number")
 	private String lotNumber;
@@ -90,10 +85,20 @@ public class DrugExposure extends BaseEntity {
 	private Concept drugConcept;
 	
 	@Column(name ="drug_exposure_start_date", nullable = false)
+	@Temporal(TemporalType.DATE)
 	private Date drugExposureStartDate;
 	
+	@Column(name ="drug_exposure_start_datetime")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date drugExposureStartDateTime;
+	
 	@Column(name ="drug_exposure_end_date")
+	@Temporal(TemporalType.DATE)
 	private Date drugExposureEndDate;
+	
+	@Column(name ="drug_exposure_end_datetime")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date drugExposureEndDateTime;
 	
 	@ManyToOne
 	@JoinColumn(name = "drug_type_concept_id", nullable = false)
@@ -146,22 +151,6 @@ public class DrugExposure extends BaseEntity {
 	
 	public void setRouteConcept(Concept routeConcept) {
 		this.routeConcept = routeConcept;
-	}
-	
-	public Double getEffectiveDrugDose() {
-		return effectiveDrugDose;
-	}
-	
-	public void setEffectiveDrugDose(Double effectiveDrugDose) {
-		this.effectiveDrugDose = effectiveDrugDose;
-	}
-	
-	public Concept getDoseUnitConcept() {
-		return doseUnitConcept;
-	}
-	
-	public void setDoseUnitConcept(Concept doseUnitConcept) {
-		this.doseUnitConcept = doseUnitConcept;
 	}
 	
 	public String getLotNumber() {
@@ -244,12 +233,28 @@ public class DrugExposure extends BaseEntity {
 		this.drugExposureStartDate = drugExposureStartDate;
 	}
 
+	public Date getDrugExposureStartDateTime() {
+		return this.drugExposureStartDateTime;
+	}
+
+	public void setDrugExposureStartDateTime(Date drugExposureStartDateTime) {
+		this.drugExposureStartDateTime = drugExposureStartDateTime;
+	}
+
 	public Date getDrugExposureEndDate() {
 		return this.drugExposureEndDate;
 	}
 
 	public void setDrugExposureEndDate(Date drugExposureEndDate) {
 		this.drugExposureEndDate = drugExposureEndDate;
+	}
+	
+	public Date getDrugExposureEndDateTime() {
+		return this.drugExposureEndDateTime;
+	}
+
+	public void setDrugExposureEndDateTime(Date drugExposureEndDateTime) {
+		this.drugExposureEndDateTime = drugExposureEndDateTime;
 	}
 	
 	public Concept getDrugTypeConcept() {

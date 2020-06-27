@@ -53,11 +53,14 @@ public class FObservationView extends BaseEntity {
 
 	@Column(name = "observation_date", nullable = false)
 	@Temporal(TemporalType.DATE)
-	private Date date;
+	private Date observationDate;
+
+	@Column(name = "observation_datetime")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date observationDateTime;
 
 	@Column(name = "observation_time")
-	// @Temporal(TemporalType.TIME)
-	private String time;
+	private String observationTime;
 
 	@Column(name = "value_as_string")
 	private String valueAsString;
@@ -71,7 +74,7 @@ public class FObservationView extends BaseEntity {
 
 	@ManyToOne(cascade = { CascadeType.MERGE })
 	@JoinColumn(name = "observation_type_concept_id", nullable = false)
-	private Concept typeConcept;
+	private Concept observationTypeConcept;
 
 	@ManyToOne(cascade = { CascadeType.MERGE })
 	@JoinColumn(name = "provider_id")
@@ -113,7 +116,7 @@ public class FObservationView extends BaseEntity {
 
 	@ManyToOne(cascade = { CascadeType.MERGE }, fetch=FetchType.LAZY)
 	@JoinColumn(name = "observation_operator_concept_id")
-	private Concept operatorConcept;
+	private Concept observationOperatorConcept;
 
 	public Long getId() {
 		return id;
@@ -121,14 +124,6 @@ public class FObservationView extends BaseEntity {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public String getTime() {
-		return time;
-	}
-
-	public void setTime(String time) {
-		this.time = time;
 	}
 
 	public FPerson getFPerson() {
@@ -147,12 +142,28 @@ public class FObservationView extends BaseEntity {
 		this.observationConcept = observationConcept;
 	}
 
-	public Date getDate() {
-		return date;
+	public Date getObservationDate() {
+		return observationDate;
 	}
 
-	public void setDate(Date date) {
-		this.date = date;
+	public void setObsdrvationDate(Date observationDate) {
+		this.observationDate = observationDate;
+	}
+
+	public Date getObservationDateTime() {
+		return observationDateTime;
+	}
+
+	public void setObsdrvationDateTime(Date observationDateTime) {
+		this.observationDateTime = observationDateTime;
+	}
+
+	public String getObservationTime() {
+		return observationTime;
+	}
+
+	public void setObsdrvationTime(String observationTime) {
+		this.observationTime = observationTime;
 	}
 
 	public String getValueAsString() {
@@ -179,12 +190,12 @@ public class FObservationView extends BaseEntity {
 		this.valueAsConcept = valueAsConcept;
 	}
 
-	public Concept getTypeConcept() {
-		return typeConcept;
+	public Concept getObservationTypeConcept() {
+		return observationTypeConcept;
 	}
 
-	public void setTypeConcept(Concept typeConcept) {
-		this.typeConcept = typeConcept;
+	public void setObservationTypeConcept(Concept observationTypeConcept) {
+		this.observationTypeConcept = observationTypeConcept;
 	}
 
 	public Provider getProvider() {
@@ -275,12 +286,12 @@ public class FObservationView extends BaseEntity {
 		this.valueSourceValue = valueSourceValue;
 	}
 
-	public Concept getOperatorConcept() {
-		return operatorConcept;
+	public Concept getObservationOperatorConcept() {
+		return observationOperatorConcept;
 	}
 
-	public void setOperatorConcept(Concept operatorConcept) {
-		this.operatorConcept = operatorConcept;
+	public void setObservationOperatorConcept(Concept observationOperatorConcept) {
+		this.observationOperatorConcept = observationOperatorConcept;
 	}
 
 	@Override

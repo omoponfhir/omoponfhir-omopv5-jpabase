@@ -29,6 +29,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name="device_exposure")
@@ -49,10 +51,20 @@ public class DeviceExposure extends BaseEntity {
 	private Concept deviceConcept;
 
 	@Column(name="device_exposure_start_date", nullable=false)
+	@Temporal(TemporalType.DATE)
 	private Date deviceExposureStartDate;
 	
+	@Column(name="device_exposure_start_datetime")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date deviceExposureStartDateTime;
+
 	@Column(name="device_exposure_end_date")
+	@Temporal(TemporalType.DATE)
 	private Date deviceExposureEndDate;
+
+	@Column(name="device_exposure_end_datetime")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date deviceExposureEndDateTime;
 
 	@Column(name="unique_device_id", nullable=false)
 	private String uniqueDeviceId;
@@ -111,6 +123,14 @@ public class DeviceExposure extends BaseEntity {
 		this.deviceExposureStartDate = deviceExposureStartDate;
 	}
 	
+	public Date getDeviceExposureStartDateTime () {
+		return deviceExposureStartDateTime;
+	}
+	
+	public void setDeviceExposureStartDateTime (Date deviceExposureStartDateTime) {
+		this.deviceExposureStartDateTime = deviceExposureStartDateTime;
+	}
+	
 	public Date getDeviceExposureEndDate () {
 		return deviceExposureEndDate;
 	}
@@ -118,7 +138,15 @@ public class DeviceExposure extends BaseEntity {
 	public void setDeviceExposureEndDate (Date deviceExposureEndDate) {
 		this.deviceExposureEndDate = deviceExposureEndDate;
 	}
+
+	public Date getDeviceExposureEndDateTime () {
+		return deviceExposureEndDateTime;
+	}
 	
+	public void setDeviceExposureEndDateTime (Date deviceExposureEndDateTime) {
+		this.deviceExposureEndDateTime = deviceExposureEndDateTime;
+	}
+
 	public String getUniqueDeviceId () {
 		return uniqueDeviceId;
 	}

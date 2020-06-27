@@ -48,15 +48,15 @@ public class Note extends BaseEntity {
 
 	@Column(name = "note_date", nullable=false)
 	@Temporal(TemporalType.DATE)
-	private Date date;
+	private Date noteDate;
 
-	@Column(name = "note_time")
-	// @Temporal(TemporalType.TIME)
-	private String time;
+	@Column(name = "note_datetime")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date noteDateTime;
 
 	@ManyToOne
 	@JoinColumn(name = "note_type_concept_id", nullable = false)
-	private Concept typeConcept;
+	private Concept noteTypeConcept;
 
 	@Column(name = "note_text", nullable=false)
 	private String noteText;
@@ -97,28 +97,28 @@ public class Note extends BaseEntity {
 		this.fPerson = fPerson;
 	}
 	
-	public Date getDate() {
-		return date;
+	public Date getNoteDate() {
+		return noteDate;
 	}
 	
-	public void setDate(Date date) {
-		this.date = date;
+	public void setNoteDate(Date noteDate) {
+		this.noteDate = noteDate;
 	}
 
-	public String getTime() {
-		return time;
+	public Date getNoteDateTime() {
+		return noteDateTime;
 	}
 	
-	public void setTime(String time) {
-		this.time = time;
+	public void setNoteDateTime(Date noteDateTime) {
+		this.noteDateTime = noteDateTime;
+	}
+
+	public Concept getNoteTypeConcept() {
+		return noteTypeConcept;
 	}
 	
-	public Concept getType() {
-		return typeConcept;
-	}
-	
-	public void setType(Concept typeConcept) {
-		this.typeConcept = typeConcept;
+	public void setNoteTypeConcept(Concept noteTypeConcept) {
+		this.noteTypeConcept = noteTypeConcept;
 	}
 	
 	public String getNoteText() {

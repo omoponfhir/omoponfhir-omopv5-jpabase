@@ -59,9 +59,12 @@ public class ProcedureOccurrence extends BaseEntity {
 	private Concept procedureConcept;
 
 	@Column(name = "procedure_date", nullable = false)
-//	@Temporal(TemporalType.DATE)
-	@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.DATE)
 	private Date procedureDate;
+
+	@Column(name = "procedure_datetime")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date procedureDateTime;
 
 	@ManyToOne
 	@JoinColumn(name = "procedure_type_concept_id")
@@ -89,8 +92,8 @@ public class ProcedureOccurrence extends BaseEntity {
 	@JoinColumn(name = "procedure_source_concept_id")
 	private Concept procedureSourceConcept;
 
-	@Column(name = "qualifier_source_value")
-	private String qualifierSourceValue;
+	@Column(name = "modifier_source_value")
+	private String modifierSourceValue;
 
 	public ProcedureOccurrence() {
 		super();
@@ -131,6 +134,14 @@ public class ProcedureOccurrence extends BaseEntity {
 
 	public void setProcedureDate(Date procedureDate) {
 		this.procedureDate = procedureDate;
+	}
+
+	public Date getProcedureDateTime() {
+		return procedureDateTime;
+	}
+
+	public void setProcedureDateTime(Date procedureDateTime) {
+		this.procedureDateTime = procedureDateTime;
 	}
 
 	public Concept getProcedureTypeConcept() {
@@ -189,12 +200,12 @@ public class ProcedureOccurrence extends BaseEntity {
 		this.procedureSourceConcept = procedureSourceConcept;
 	}
 
-	public String getQualifierSourceValue() {
-		return qualifierSourceValue;
+	public String getModifierSourceValue() {
+		return modifierSourceValue;
 	}
 	
-	public void setQualifierSourceValue(String qualifierSourceValue) {
-		this.qualifierSourceValue = qualifierSourceValue;
+	public void setModifierSourceValue(String modifierSourceValue) {
+		this.modifierSourceValue = modifierSourceValue;
 	}
 
 	@Override

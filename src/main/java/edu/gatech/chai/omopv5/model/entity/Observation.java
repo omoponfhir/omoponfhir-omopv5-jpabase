@@ -59,11 +59,11 @@ public class Observation extends BaseEntity {
 
 	@Column(name = "observation_date", nullable = false)
 	@Temporal(TemporalType.DATE)
-	private Date date;
+	private Date observationDate;
 
-	@Column(name = "observation_time")
-	// @Temporal(TemporalType.TIME)
-	private String time;
+	@Column(name = "observation_datetime", nullable = false)
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date observationDateTime;
 
 	@Column(name = "value_as_string")
 	private String valueAsString;
@@ -77,7 +77,7 @@ public class Observation extends BaseEntity {
 
 	@ManyToOne
 	@JoinColumn(name = "observation_type_concept_id", nullable = false)
-	private Concept typeConcept;
+	private Concept observationTypeConcept;
 
 	@ManyToOne
 	@JoinColumn(name = "provider_id")
@@ -88,11 +88,11 @@ public class Observation extends BaseEntity {
 	private VisitOccurrence visitOccurrence;
 
 	@Column(name = "observation_source_value")
-	private String sourceValue;
+	private String observationSourceValue;
 
 	@ManyToOne
 	@JoinColumn(name = "observation_source_concept_id")
-	private Concept sourceConcept;
+	private Concept observationSourceConcept;
 
 	@ManyToOne
 	@JoinColumn(name = "qualifier_concept_id")
@@ -116,14 +116,6 @@ public class Observation extends BaseEntity {
 		this.id = id;
 	}
 
-	public String getTime() {
-		return time;
-	}
-
-	public void setTime(String time) {
-		this.time = time;
-	}
-
 	public FPerson getFPerson() {
 		return fPerson;
 	}
@@ -140,12 +132,20 @@ public class Observation extends BaseEntity {
 		this.observationConcept = observationConcept;
 	}
 
-	public Date getDate() {
-		return date;
+	public Date getObservationDate() {
+		return observationDate;
 	}
 
-	public void setDate(Date date) {
-		this.date = date;
+	public void setObservationDate(Date observationDate) {
+		this.observationDate = observationDate;
+	}
+
+	public Date getObservationDateTime() {
+		return observationDateTime;
+	}
+
+	public void setObservationDateTime(Date observationDateTime) {
+		this.observationDateTime = observationDateTime;
 	}
 
 	public String getValueAsString() {
@@ -172,12 +172,12 @@ public class Observation extends BaseEntity {
 		this.valueAsConcept = valueAsConcept;
 	}
 
-	public Concept getTypeConcept() {
-		return typeConcept;
+	public Concept getObservationTypeConcept() {
+		return observationTypeConcept;
 	}
 
-	public void setTypeConcept(Concept typeConcept) {
-		this.typeConcept = typeConcept;
+	public void setObservationTypeConcept(Concept observationTypeConcept) {
+		this.observationTypeConcept = observationTypeConcept;
 	}
 
 	public Provider getProvider() {
@@ -212,20 +212,20 @@ public class Observation extends BaseEntity {
 		this.qualifierSourceValue = qualifierSourceValue;
 	}
 	
-	public String getSourceValue() {
-		return sourceValue;
+	public String getObservationSourceValue() {
+		return observationSourceValue;
 	}
 
-	public void setSourceValue(String sourceValue) {
-		this.sourceValue = sourceValue;
+	public void setObservationSourceValue(String observationSourceValue) {
+		this.observationSourceValue = observationSourceValue;
 	}
 
-	public Concept getSourceConcept() {
-		return sourceConcept;
+	public Concept getObservationSourceConcept() {
+		return observationSourceConcept;
 	}
 	
-	public void setSourceConcept(Concept sourceConcept) {
-		this.sourceConcept = sourceConcept;
+	public void setObservationSourceConcept(Concept observationSourceConcept) {
+		this.observationSourceConcept = observationSourceConcept;
 	}
 	
 	public Concept getUnitConcept() {
