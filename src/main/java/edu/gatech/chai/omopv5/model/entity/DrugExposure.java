@@ -210,7 +210,7 @@ public class DrugExposure extends BaseEntity {
 	}
 	
 	public String getDoseUnitSourceValue() {
-		return doseUnitSourceValue;
+		return this.doseUnitSourceValue;
 	}
 	
 	public void setDoseUnitSourceValue(String doseUnitSourceValue) {
