@@ -84,12 +84,12 @@ public class FObservationView extends BaseEntity {
 	@JoinColumn(name = "visit_occurrence_id")
 	private VisitOccurrence visitOccurrence;
 
-	@Column(name = "source_value")
-	private String sourceValue;
+	@Column(name = "observation_source_value")
+	private String observationSourceValue;
 
 	@ManyToOne(cascade = { CascadeType.MERGE }, fetch=FetchType.LAZY)
-	@JoinColumn(name = "source_concept_id")
-	private Concept sourceConcept;
+	@JoinColumn(name = "observation_source_concept_id")
+	private Concept observationSourceConcept;
 
 	@ManyToOne(cascade = { CascadeType.MERGE }, fetch=FetchType.LAZY)
 	@JoinColumn(name = "qualifier_concept_id")
@@ -230,20 +230,20 @@ public class FObservationView extends BaseEntity {
 		this.qualifierSourceValue = qualifierSourceValue;
 	}
 	
-	public String getSourceValue() {
-		return sourceValue;
+	public String getObservationSourceValue() {
+		return observationSourceValue;
 	}
 
-	public void setSourceValue(String sourceValue) {
-		this.sourceValue = sourceValue;
+	public void setObservationSourceValue(String observationSourceValue) {
+		this.observationSourceValue = observationSourceValue;
 	}
 
-	public Concept getSourceConcept() {
-		return sourceConcept;
+	public Concept getObservationSourceConcept() {
+		return observationSourceConcept;
 	}
 	
-	public void setSourceConcept(Concept sourceConcept) {
-		this.sourceConcept = sourceConcept;
+	public void setObservationSourceConcept(Concept observationSourceConcept) {
+		this.observationSourceConcept = observationSourceConcept;
 	}
 	
 	public Concept getUnitConcept() {
