@@ -37,21 +37,21 @@ import javax.persistence.Table;
 public class Vocabulary extends BaseEntity {
 	
 	@Id
-	@Column(name="vocabulary_id")
+	@Column(name="vocabulary_id", nullable=false)
 	@Access(AccessType.PROPERTY)
 	private String id;
 	
-	@Column(name="vocabulary_name")
+	@Column(name="vocabulary_name", nullable=false)
 	private String name;
 	
-	@Column(name="vocabulary_reference")
+	@Column(name="vocabulary_reference", nullable=false)
 	private String vocabularyReference;
 	
-	@Column(name="vocabulary_version")
+	@Column(name="vocabulary_version", nullable=false)
 	private String vocabularyVersion;
 
 	@ManyToOne
-	@JoinColumn(name="vocabulary_concept_id")
+	@JoinColumn(name="vocabulary_concept_id", nullable=false)
 	private Concept vocabularyConcept;
 
 	public Vocabulary() {

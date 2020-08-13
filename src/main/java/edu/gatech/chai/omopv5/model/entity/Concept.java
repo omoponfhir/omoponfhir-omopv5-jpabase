@@ -25,8 +25,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -35,39 +33,39 @@ import javax.persistence.Table;
 public class Concept extends BaseEntity {
 
 	@Id
-	@Column(name = "concept_id")
+	@Column(name = "concept_id", nullable=false)
 	@Access(AccessType.PROPERTY)
 	private Long id;
 
-	@Column(name = "concept_name")
+	@Column(name = "concept_name", nullable=false)
 	private String conceptName;
 
 //	@ManyToOne
 //	@JoinColumn(name="domain_id", referencedColumnName="domain_id", insertable=false, updatable=false)
 //	private Domain domain;
 
-	@Column(name = "domain_id")
+	@Column(name = "domain_id", nullable=false)
 	private String domainId;
 
 //	@ManyToOne
 //	@JoinColumn(name = "vocabulary_id", referencedColumnName="vocabulary_id")
 //	private Vocabulary vocabulary;
-	@Column(name = "vocabulary_id")
+	@Column(name = "vocabulary_id", nullable=false)
 	private String vocabularyId;
 
-	@Column(name = "concept_class_id")
+	@Column(name = "concept_class_id", nullable=false)
 	private String conceptClassId;
 
 	@Column(name = "standard_concept")
 	private Character standardConcept;
 
-	@Column(name = "concept_code")
+	@Column(name = "concept_code", nullable=false)
 	private String conceptCode;
 
-	@Column(name = "valid_start_date")
+	@Column(name = "valid_start_date", nullable=false)
 	private Date validStartDate;
 
-	@Column(name = "valid_end_date")
+	@Column(name = "valid_end_date", nullable=false)
 	private Date validEndDate;
 
 	@Column(name = "invalid_reason")
