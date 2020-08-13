@@ -46,7 +46,7 @@ public class VisitOccurrence extends BaseEntity {
 	private FPerson fPerson;
 	
 	@ManyToOne()
-	@JoinColumn(name="visit_concept_id")
+	@JoinColumn(name="visit_concept_id", nullable=false)
 	private Concept visitConcept;
 	
 	@Column(name="visit_start_date", nullable=false)
@@ -62,7 +62,7 @@ public class VisitOccurrence extends BaseEntity {
 	private Date visitEndDateTime;
 	
 	@ManyToOne
-	@JoinColumn(name="visit_type_concept_id")
+	@JoinColumn(name="visit_type_concept_id", nullable=false)
 	private Concept visitTypeConcept;
 	
 	@ManyToOne()
@@ -71,19 +71,33 @@ public class VisitOccurrence extends BaseEntity {
 	
 	@ManyToOne()
 	@JoinColumn(name="care_site_id")
-	private CareSite careSite; //FIXME field names should reflect fhir names, for validation purposes.
+	private CareSite careSite;
 	
 	@Column(name="visit_source_value")
 	private String visitSourceValue;
 	
 	@ManyToOne
-	@JoinColumn(name="admitting_source_concept_id")
-	private Concept admittingSourceConcept;
-	
-	@ManyToOne
 	@JoinColumn(name="visit_source_concept_id")
 	private Concept visitSourceConcept;
+
+	@ManyToOne
+	@JoinColumn(name="admitting_source_concept_id")
+	private Concept admittingSourceConcept;
+
+	@Column(name="admitting_source_value")
+	private String admittingSourceValue;
 	
+	@ManyToOne
+	@JoinColumn(name="discharge_to_concept_id")
+	private Concept dischargeToConcept;
+		
+	@Column(name="discharge_to_source_value")
+	private String dischargeToSourceValue;
+	
+	@ManyToOne
+	@JoinColumn(name="preceding_visit_occurrence_id")
+	private VisitOccurrence precedingVisitOccurrence;
+		
 
 	public VisitOccurrence() {
 	}
@@ -186,6 +200,46 @@ public class VisitOccurrence extends BaseEntity {
 	
 	public void setVisitSourceConcept(Concept visitSourceConcept) {
 		this.visitSourceConcept = visitSourceConcept;
+	}
+	
+	public Concept getAdmittingSourceConcept() {
+		return admittingSourceConcept;
+	}
+	
+	public void setAdmittingSourceConcept(Concept admittingSourceConcept) {
+		this.admittingSourceConcept = admittingSourceConcept;
+	}
+
+	public String getAdmittingSourceValue() {
+		return admittingSourceValue;
+	}
+	
+	public void setAdmittingSourceValue(String admittingSourceValue) {
+		this.admittingSourceValue = admittingSourceValue;
+	}
+	
+	public Concept getDischargeToConcept() {
+		return dischargeToConcept;
+	}
+	
+	public void setDischargeToConcept(Concept dischargeToConcept) {
+		this.dischargeToConcept = dischargeToConcept;
+	}
+
+	public String getDischargeToSourceValue() {
+		return dischargeToSourceValue;
+	}
+	
+	public void setDischargeToSourceValue(String dischargeToSourceValue) {
+		this.dischargeToSourceValue = dischargeToSourceValue;
+	}
+	
+	public VisitOccurrence getPrecedingVisitOccurrence() {
+		return precedingVisitOccurrence;
+	}
+	
+	public void setPrecedingVisitOccurrence(VisitOccurrence precedingVisitOccurrence) {
+		this.precedingVisitOccurrence = precedingVisitOccurrence;
 	}
 
 	@Override
