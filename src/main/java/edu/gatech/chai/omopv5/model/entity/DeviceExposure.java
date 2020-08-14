@@ -66,13 +66,16 @@ public class DeviceExposure extends BaseEntity {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date deviceExposureEndDateTime;
 
-	@Column(name="unique_device_id", nullable=false)
-	private String uniqueDeviceId;
-	
 	@ManyToOne
 	@JoinColumn(name="device_type_concept_id", nullable=false)
 	private Concept deviceTypeConcept;
 
+	@Column(name="unique_device_id")
+	private String uniqueDeviceId;
+	
+	@Column(name="quantity")
+	private Integer quantity;
+	
 	@ManyToOne
 	@JoinColumn(name="provider_id")
 	private Provider provider;
@@ -82,14 +85,15 @@ public class DeviceExposure extends BaseEntity {
 	private VisitOccurrence visitOccurrence;
 	
 	@ManyToOne
-	@JoinColumn(name="device_source_concept_id")
-	private Concept deviceSourceConcept;
-	
+	@JoinColumn(name = "visit_detail_id")
+	private VisitDetail visitDetail;
+
 	@Column(name="device_source_value")
 	private String deviceSourceValue;
 	
-	@Column(name="quantity")
-	private Integer quantity;
+	@ManyToOne
+	@JoinColumn(name="device_source_concept_id")
+	private Concept deviceSourceConcept;
 	
 	public Long getId() {
 		return id;
@@ -147,6 +151,14 @@ public class DeviceExposure extends BaseEntity {
 		this.deviceExposureEndDateTime = deviceExposureEndDateTime;
 	}
 
+	public Concept getDeviceTypeConcept () {
+		return deviceTypeConcept;
+	}
+	
+	public void setDeviceTypeConcept (Concept deviceTypeConcept) {
+		this.deviceTypeConcept = deviceTypeConcept;
+	}
+	
 	public String getUniqueDeviceId () {
 		return uniqueDeviceId;
 	}
@@ -155,12 +167,12 @@ public class DeviceExposure extends BaseEntity {
 		this.uniqueDeviceId = uniqueDeviceId;
 	}
 	
-	public Concept getDeviceTypeConcept () {
-		return deviceTypeConcept;
+	public Integer getQuantity() {
+		return this.quantity;
 	}
 	
-	public void setDeviceTypeConcept (Concept deviceTypeConcept) {
-		this.deviceTypeConcept = deviceTypeConcept;
+	public void setQuantity(Integer quantity) {
+		this.quantity = quantity;
 	}
 	
 	public Provider getProvider () {
@@ -179,12 +191,12 @@ public class DeviceExposure extends BaseEntity {
 		this.visitOccurrence = visitOccurrence;
 	}
 	
-	public Concept getDeviceSourceConcept () {
-		return this.deviceSourceConcept;
+	public VisitDetail getVisitDetail() {
+		return this.visitDetail;
 	}
 	
-	public void setDeviceSourceConcept (Concept deviceSourceConcept) {
-		this.deviceSourceConcept = deviceSourceConcept;
+	public void setVisitDetail(VisitDetail visitDetail) {
+		this.visitDetail = visitDetail;
 	}
 	
 	public String getDeviceSourceValue () {
@@ -195,12 +207,12 @@ public class DeviceExposure extends BaseEntity {
 		this.deviceSourceValue = deviceSourceValue;
 	}
 	
-	public Integer getQuantity() {
-		return this.quantity;
+	public Concept getDeviceSourceConcept () {
+		return this.deviceSourceConcept;
 	}
 	
-	public void setQuantity(Integer quantity) {
-		this.quantity = quantity;
+	public void setDeviceSourceConcept (Concept deviceSourceConcept) {
+		this.deviceSourceConcept = deviceSourceConcept;
 	}
 	
 	@Override

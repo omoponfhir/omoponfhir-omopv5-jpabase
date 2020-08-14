@@ -67,7 +67,7 @@ public class ProcedureOccurrence extends BaseEntity {
 	private Date procedureDateTime;
 
 	@ManyToOne
-	@JoinColumn(name = "procedure_type_concept_id")
+	@JoinColumn(name = "procedure_type_concept_id", nullable = false)
 	private Concept procedureTypeConcept;
 
 	@ManyToOne
@@ -84,6 +84,10 @@ public class ProcedureOccurrence extends BaseEntity {
 	@ManyToOne
 	@JoinColumn(name = "visit_occurrence_id")
 	private VisitOccurrence visitOccurrence;
+
+	@ManyToOne
+	@JoinColumn(name = "visit_detail_id")
+	private VisitDetail visitDetail;
 
 	@Column(name = "procedure_source_value")
 	private String procedureSourceValue;
@@ -182,6 +186,14 @@ public class ProcedureOccurrence extends BaseEntity {
 
 	public void setVisitOccurrence(VisitOccurrence visitOccurrence) {
 		this.visitOccurrence = visitOccurrence;
+	}
+
+	public VisitDetail getVisitDetail() {
+		return visitDetail;
+	}
+
+	public void setVisitDetail(VisitDetail visitDetail) {
+		this.visitDetail = visitDetail;
 	}
 
 	public String getProcedureSourceValue() {

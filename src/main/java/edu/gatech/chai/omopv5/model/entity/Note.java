@@ -58,9 +58,24 @@ public class Note extends BaseEntity {
 	@JoinColumn(name = "note_type_concept_id", nullable = false)
 	private Concept noteTypeConcept;
 
-	@Column(name = "note_text", nullable=false)
+	@ManyToOne
+	@JoinColumn(name = "note_class_concept_id", nullable = false)
+	private Concept noteClassConcept;
+
+	@Column(name = "note_title")
+	private String noteTitle;
+
+	@Column(name = "note_text")
 	private String noteText;
 	
+	@ManyToOne
+	@JoinColumn(name = "encoding_concept_id", nullable = false)
+	private Concept encodingConcept;
+
+	@ManyToOne
+	@JoinColumn(name = "language_concept_id", nullable = false)
+	private Concept languageConcept;
+
 	@ManyToOne
 	@JoinColumn(name = "provider_id")
 	private Provider provider;
@@ -68,6 +83,10 @@ public class Note extends BaseEntity {
 	@ManyToOne
 	@JoinColumn(name = "visit_occurrence_id")
 	private VisitOccurrence visitOccurrence;
+
+	@ManyToOne
+	@JoinColumn(name = "visit_detail_id")
+	private VisitDetail visitDetail;
 
 	@Column(name = "note_source_value")
 	private String noteSourceValue;
@@ -121,12 +140,44 @@ public class Note extends BaseEntity {
 		this.noteTypeConcept = noteTypeConcept;
 	}
 	
+	public Concept getNoteClassConcept() {
+		return noteClassConcept;
+	}
+	
+	public void setNoteClassConcept(Concept noteClassConcept) {
+		this.noteClassConcept = noteClassConcept;
+	}
+	
+	public String getNoteTitle() {
+		return noteTitle;
+	}
+	
+	public void setNoteTitle(String noteTitle) {
+		this.noteTitle = noteTitle;
+	}
+	
 	public String getNoteText() {
 		return noteText;
 	}
 	
 	public void setNoteText(String noteText) {
 		this.noteText = noteText;
+	}
+	
+	public Concept getEncodingConcept() {
+		return encodingConcept;
+	}
+	
+	public void setEncodingConcept(Concept encodingConcept) {
+		this.encodingConcept = encodingConcept;
+	}
+	
+	public Concept getLanguageConcept() {
+		return languageConcept;
+	}
+	
+	public void setLanguageConcept(Concept languageConcept) {
+		this.languageConcept = languageConcept;
 	}
 	
 	public Provider getProvider() {
@@ -143,6 +194,14 @@ public class Note extends BaseEntity {
 	
 	public void setVisitOccurrence(VisitOccurrence visitOccurrence) {
 		this.visitOccurrence = visitOccurrence;
+	}
+	
+	public VisitDetail getVisitDetail() {
+		return this.visitDetail;
+	}
+	
+	public void setVisitDetail(VisitDetail visitDetail) {
+		this.visitDetail = visitDetail;
 	}
 	
 	public String getNoteSourceValue() {

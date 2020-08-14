@@ -65,19 +65,27 @@ public class Observation extends BaseEntity {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date observationDateTime;
 
-	@Column(name = "value_as_string")
-	private String valueAsString;
+	@ManyToOne
+	@JoinColumn(name = "observation_type_concept_id", nullable = false)
+	private Concept observationTypeConcept;
 
 	@Column(name = "value_as_number")
 	private Double valueAsNumber;
+
+	@Column(name = "value_as_string")
+	private String valueAsString;
 
 	@ManyToOne
 	@JoinColumn(name = "value_as_concept_id")
 	private Concept valueAsConcept;
 
 	@ManyToOne
-	@JoinColumn(name = "observation_type_concept_id", nullable = false)
-	private Concept observationTypeConcept;
+	@JoinColumn(name = "qualifier_concept_id")
+	private Concept qualifierConcept;
+
+	@ManyToOne
+	@JoinColumn(name = "unit_concept_id")
+	private Concept unitConcept;
 
 	@ManyToOne
 	@JoinColumn(name = "provider_id")
@@ -87,6 +95,10 @@ public class Observation extends BaseEntity {
 	@JoinColumn(name = "visit_occurrence_id")
 	private VisitOccurrence visitOccurrence;
 
+	@ManyToOne
+	@JoinColumn(name = "visit_detail_id")
+	private VisitDetail visitDetail;
+
 	@Column(name = "observation_source_value")
 	private String observationSourceValue;
 
@@ -94,19 +106,11 @@ public class Observation extends BaseEntity {
 	@JoinColumn(name = "observation_source_concept_id")
 	private Concept observationSourceConcept;
 
-	@ManyToOne
-	@JoinColumn(name = "qualifier_concept_id")
-	private Concept qualifierConcept;
+	@Column(name = "unit_source_value")
+	private String unitSourceValue;
 
 	@Column(name = "qualifier_source_value")
 	private String qualifierSourceValue;
-
-	@ManyToOne
-	@JoinColumn(name = "unit_concept_id")
-	private Concept unitConcept;
-
-	@Column(name = "unit_source_value")
-	private String unitSourceValue;
 
 	public Long getId() {
 		return id;
@@ -148,12 +152,12 @@ public class Observation extends BaseEntity {
 		this.observationDateTime = observationDateTime;
 	}
 
-	public String getValueAsString() {
-		return valueAsString;
+	public Concept getObservationTypeConcept() {
+		return observationTypeConcept;
 	}
 
-	public void setValueAsString(String valueAsString) {
-		this.valueAsString = valueAsString;
+	public void setObservationTypeConcept(Concept observationTypeConcept) {
+		this.observationTypeConcept = observationTypeConcept;
 	}
 
 	public Double getValueAsNumber() {
@@ -164,6 +168,14 @@ public class Observation extends BaseEntity {
 		this.valueAsNumber = valueAsNumber;
 	}
 
+	public String getValueAsString() {
+		return valueAsString;
+	}
+
+	public void setValueAsString(String valueAsString) {
+		this.valueAsString = valueAsString;
+	}
+
 	public Concept getValueAsConcept() {
 		return valueAsConcept;
 	}
@@ -172,12 +184,20 @@ public class Observation extends BaseEntity {
 		this.valueAsConcept = valueAsConcept;
 	}
 
-	public Concept getObservationTypeConcept() {
-		return observationTypeConcept;
+	public Concept getQualifierConcept () {
+		return qualifierConcept;
+	}
+	
+	public void setQualifierConcept (Concept qualifierConcept) {
+		this.qualifierConcept = qualifierConcept;
+	}
+	
+	public Concept getUnitConcept() {
+		return unitConcept;
 	}
 
-	public void setObservationTypeConcept(Concept observationTypeConcept) {
-		this.observationTypeConcept = observationTypeConcept;
+	public void setUnitConcept(Concept unitConcept) {
+		this.unitConcept = unitConcept;
 	}
 
 	public Provider getProvider() {
@@ -196,20 +216,12 @@ public class Observation extends BaseEntity {
 		this.visitOccurrence = visitOccurrence;
 	}
 
-	public Concept getQualifierConcept () {
-		return qualifierConcept;
+	public VisitDetail getVisitDetail() {
+		return this.visitDetail;
 	}
 	
-	public void setQualifierConcept (Concept qualifierConcept) {
-		this.qualifierConcept = qualifierConcept;
-	}
-	
-	public String getQualifierSourceValue () {
-		return qualifierSourceValue;
-	}
-	
-	public void setQualifierSourceValue (String qualifierSourceValue) {
-		this.qualifierSourceValue = qualifierSourceValue;
+	public void setVisitDetail(VisitDetail visitDetail) {
+		this.visitDetail = visitDetail;
 	}
 	
 	public String getObservationSourceValue() {
@@ -228,14 +240,6 @@ public class Observation extends BaseEntity {
 		this.observationSourceConcept = observationSourceConcept;
 	}
 	
-	public Concept getUnitConcept() {
-		return unitConcept;
-	}
-
-	public void setUnitConcept(Concept unitConcept) {
-		this.unitConcept = unitConcept;
-	}
-
 	public String getUnitSourceValue() {
 		return unitSourceValue;
 	}
@@ -244,6 +248,14 @@ public class Observation extends BaseEntity {
 		this.unitSourceValue = unitSourceValue;
 	}
 
+	public String getQualifierSourceValue () {
+		return qualifierSourceValue;
+	}
+	
+	public void setQualifierSourceValue (String qualifierSourceValue) {
+		this.qualifierSourceValue = qualifierSourceValue;
+	}
+	
 	@Override
 	public Long getIdAsLong() {
 		return getId();
