@@ -68,11 +68,11 @@ public class Person extends BaseEntity {
 	private Date birthDateTime;
 	
 	@ManyToOne
-	@JoinColumn(name="race_concept_id")
+	@JoinColumn(name="race_concept_id", nullable=false)
 	private Concept raceConcept;
 	
 	@ManyToOne
-	@JoinColumn(name="ethnicity_concept_id")
+	@JoinColumn(name="ethnicity_concept_id", nullable=false)
 	private Concept ethnicityConcept;
 	
 	@ManyToOne

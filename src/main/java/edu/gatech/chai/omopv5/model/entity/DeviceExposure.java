@@ -54,7 +54,7 @@ public class DeviceExposure extends BaseEntity {
 	@Temporal(TemporalType.DATE)
 	private Date deviceExposureStartDate;
 	
-	@Column(name="device_exposure_start_datetime")
+	@Column(name="device_exposure_start_datetime", nullable=false)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date deviceExposureStartDateTime;
 
@@ -66,13 +66,16 @@ public class DeviceExposure extends BaseEntity {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date deviceExposureEndDateTime;
 
-	@Column(name="unique_device_id", nullable=false)
-	private String uniqueDeviceId;
-	
 	@ManyToOne
 	@JoinColumn(name="device_type_concept_id", nullable=false)
 	private Concept deviceTypeConcept;
 
+	@Column(name="unique_device_id", nullable=false)
+	private String uniqueDeviceId;
+	
+	@Column(name="quantity")
+	private Integer quantity;
+	
 	@ManyToOne
 	@JoinColumn(name="provider_id")
 	private Provider provider;
@@ -81,15 +84,12 @@ public class DeviceExposure extends BaseEntity {
 	@JoinColumn(name="visit_occurrence_id")
 	private VisitOccurrence visitOccurrence;
 	
-	@ManyToOne
-	@JoinColumn(name="device_source_concept_id")
-	private Concept deviceSourceConcept;
-	
 	@Column(name="device_source_value")
 	private String deviceSourceValue;
 	
-	@Column(name="quantity")
-	private Integer quantity;
+	@ManyToOne
+	@JoinColumn(name="device_source_concept_id")
+	private Concept deviceSourceConcept;
 	
 	public Long getId() {
 		return id;

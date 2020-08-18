@@ -12,38 +12,38 @@ public class ConceptRelationshipPK implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	@Column(name = "concept_id_1")
-    private Long concept1;
+	@Column(name = "concept_id_1", nullable=false)
+    private Long conceptId1;
 
-    @Column(name = "concept_id_2")
-    private Long concept2;
+    @Column(name = "concept_id_2", nullable=false)
+    private Long conceptId2;
     
-    @Column(name="relationship_id")
+    @Column(name="relationship_id", nullable=false)
 	private String relationshipId;
     
     public ConceptRelationshipPK() {
     }
     
-    public ConceptRelationshipPK(Long concept1, Long concept2, String relationshipId) {
-    	this.concept1 = concept1;
-    	this.concept2 = concept2;
+    public ConceptRelationshipPK(Long conceptId1, Long conceptId2, String relationshipId) {
+    	this.conceptId1 = conceptId1;
+    	this.conceptId2 = conceptId2;
     	this.relationshipId = relationshipId;
     }
 
-    public Long getConcept1() {
-		return this.concept1;
+    public Long getConceptId1() {
+		return this.conceptId1;
 	}
 	
-	public void setConcept1(Long concept1) {
-		this.concept1 = concept1;
+	public void setConceptId1(Long conceptId1) {
+		this.conceptId1 = conceptId1;
 	}
 
-	public Long getConcept2() {
-		return this.concept2;
+	public Long getConceptId2() {
+		return this.conceptId2;
 	}
 	
-	public void setConcept2(Long concept2) {
-		this.concept2 = concept2;
+	public void setConceptId2(Long conceptId2) {
+		this.conceptId2 = conceptId2;
 	}
 	
 	public String getRelationshipId() {
@@ -60,7 +60,7 @@ public class ConceptRelationshipPK implements Serializable {
 		int result = 1;
 		result = prime * result
 				+ ((relationshipId == null) ? 0 : relationshipId.hashCode());
-		result = prime * result + concept1.intValue() + concept2.intValue();
+		result = prime * result + conceptId1.intValue() + conceptId2.intValue();
 		return result;
 	}
     
@@ -78,9 +78,9 @@ public class ConceptRelationshipPK implements Serializable {
 				return false;
 		} else if (!relationshipId.equals(other.relationshipId))
 			return false;
-		if (concept1 != other.concept1)
+		if (conceptId1 != other.conceptId1)
 			return false;
-		if (concept2 != other.concept2)
+		if (conceptId2 != other.conceptId2)
 			return false;
 		
 		return true;

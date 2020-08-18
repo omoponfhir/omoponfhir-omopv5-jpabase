@@ -65,19 +65,27 @@ public class Observation extends BaseEntity {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date observationDateTime;
 
-	@Column(name = "value_as_string")
-	private String valueAsString;
+	@ManyToOne
+	@JoinColumn(name = "observation_type_concept_id", nullable = false)
+	private Concept observationTypeConcept;
 
 	@Column(name = "value_as_number")
 	private Double valueAsNumber;
+
+	@Column(name = "value_as_string")
+	private String valueAsString;
 
 	@ManyToOne
 	@JoinColumn(name = "value_as_concept_id")
 	private Concept valueAsConcept;
 
 	@ManyToOne
-	@JoinColumn(name = "observation_type_concept_id", nullable = false)
-	private Concept observationTypeConcept;
+	@JoinColumn(name = "qualifier_concept_id")
+	private Concept qualifierConcept;
+
+	@ManyToOne
+	@JoinColumn(name = "unit_concept_id")
+	private Concept unitConcept;
 
 	@ManyToOne
 	@JoinColumn(name = "provider_id")
@@ -94,19 +102,11 @@ public class Observation extends BaseEntity {
 	@JoinColumn(name = "observation_source_concept_id")
 	private Concept observationSourceConcept;
 
-	@ManyToOne
-	@JoinColumn(name = "qualifier_concept_id")
-	private Concept qualifierConcept;
+	@Column(name = "unit_source_value")
+	private String unitSourceValue;
 
 	@Column(name = "qualifier_source_value")
 	private String qualifierSourceValue;
-
-	@ManyToOne
-	@JoinColumn(name = "unit_concept_id")
-	private Concept unitConcept;
-
-	@Column(name = "unit_source_value")
-	private String unitSourceValue;
 
 	public Long getId() {
 		return id;

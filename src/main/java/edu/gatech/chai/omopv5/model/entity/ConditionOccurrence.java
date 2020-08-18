@@ -49,27 +49,27 @@ public class ConditionOccurrence extends BaseEntity{
 
 	@ManyToOne
 	@JoinColumn(name = "condition_concept_id", nullable = false)
-	private Concept conceptId;
+	private Concept conditionConcept;
 	
 	@Column(name="condition_start_date", nullable = false)
 	@Temporal(TemporalType.DATE)
-	private Date startDate;
+	private Date conditionStartDate;
 
 	@Column(name="condition_start_datetime")
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date startDateTime;
+	private Date conditionStartDateTime;
 
 	@Column(name="condition_end_date")
 	@Temporal(TemporalType.DATE)
-	private Date endDate;
+	private Date conditionEndDate;
 
 	@Column(name="condition_end_datetime")
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date endDateTime;
+	private Date conditionEndDateTime;
 
 	@ManyToOne
 	@JoinColumn(name = "condition_type_concept_id", nullable = false)
-	private Concept typeConceptId;
+	private Concept conditionTypeConcept;
 
 	@Column(name="stop_reason")
 	private String stopReason;
@@ -87,8 +87,14 @@ public class ConditionOccurrence extends BaseEntity{
 
 	@ManyToOne
 	@JoinColumn(name = "condition_source_concept_id")
-	private Concept sourceConceptId;
+	private Concept conditionSourceConcept;
 
+	@Column(name="condition_status_source_value")
+	private String conditionStatusSourceValue;
+
+	@ManyToOne
+	@JoinColumn(name = "condition_status_concept_id")
+	private Concept conditionStatusConcept;
 
 	public Long getId() {
 		return id;
@@ -106,52 +112,52 @@ public class ConditionOccurrence extends BaseEntity{
 		this.fPerson = fPerson;
 	}
 
-	public Concept getConceptId() {
-		return conceptId;
+	public Concept getConditionConcept() {
+		return conditionConcept;
 	}
 
-	public void setConceptId(Concept conceptId) {
-		this.conceptId = conceptId;
+	public void setConditionConcept(Concept conditionConcept) {
+		this.conditionConcept = conditionConcept;
 	}
 
-	public Date getStartDate() {
-		return startDate;
+	public Date getConditionStartDate() {
+		return conditionStartDate;
 	}
 
-	public void setStartDate(Date startDate) {
-		this.startDate = startDate;
+	public void setConditionStartDate(Date conditionStartDate) {
+		this.conditionStartDate = conditionStartDate;
 	}
 
-	public Date getStartDateTime() {
-		return startDateTime;
+	public Date getConditionStartDateTime() {
+		return conditionStartDateTime;
 	}
 
-	public void setStartDateTime(Date startDateTime) {
-		this.startDateTime = startDateTime;
+	public void setConditionStartDateTime(Date conditionStartDateTime) {
+		this.conditionStartDateTime = conditionStartDateTime;
 	}
 
-	public Date getEndDate() {
-		return endDate;
+	public Date getConditionEndDate() {
+		return conditionEndDate;
 	}
 
-	public void setEndDate(Date endDate) {
-		this.endDate = endDate;
+	public void setConditionEndDate(Date conditionEndDate) {
+		this.conditionEndDate = conditionEndDate;
 	}
 
-	public Date getEndDateTime() {
-		return endDateTime;
+	public Date getConditionEndDateTime() {
+		return conditionEndDateTime;
 	}
 
-	public void setEndDateTime(Date endDateTime) {
-		this.endDateTime = endDateTime;
+	public void setConditionEndDateTime(Date conditionEndDateTime) {
+		this.conditionEndDateTime = conditionEndDateTime;
 	}
 
-	public Concept getTypeConceptId() {
-		return typeConceptId;
+	public Concept getConditionTypeConcept() {
+		return conditionTypeConcept;
 	}
 
-	public void setTypeConceptId(Concept typeConceptId) {
-		this.typeConceptId = typeConceptId;
+	public void setConditionTypeConcept(Concept conditionTypeConcept) {
+		this.conditionTypeConcept = conditionTypeConcept;
 	}
 
 	public String getStopReason() {
@@ -186,12 +192,28 @@ public class ConditionOccurrence extends BaseEntity{
 		this.conditionSourceValue = conditionSourceValue;
 	}
 
-	public Concept getSourceConceptId() {
-		return sourceConceptId;
+	public Concept getConditionSourceConcept() {
+		return conditionSourceConcept;
 	}
 
-	public void setSourceConceptId(Concept sourceConceptId) {
-		this.sourceConceptId = sourceConceptId;
+	public void setConditionSourceConcept(Concept conditionSourceConcept) {
+		this.conditionSourceConcept = conditionSourceConcept;
+	}
+
+	public String getConditionStatusSourceValue() {
+		return conditionStatusSourceValue;
+	}
+
+	public void setConditionStatusSourceValue(String conditionStatusSourceValue) {
+		this.conditionStatusSourceValue = conditionStatusSourceValue;
+	}
+
+	public Concept getConditionStatusConcept() {
+		return conditionStatusConcept;
+	}
+
+	public void setConditionStatusConcept(Concept conditionStatusConcept) {
+		this.conditionStatusConcept = conditionStatusConcept;
 	}
 
 	@Override

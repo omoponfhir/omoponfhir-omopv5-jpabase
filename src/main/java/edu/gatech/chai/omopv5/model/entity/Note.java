@@ -38,7 +38,7 @@ public class Note extends BaseEntity {
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="note_seq_gen")
 	@SequenceGenerator(name="note_seq_gen", sequenceName="note_id_seq", allocationSize=1)
-	@Column(name="note_id")
+	@Column(name="note_id", nullable=false)
 	@Access(AccessType.PROPERTY)
 	private Long id;
 
@@ -58,9 +58,24 @@ public class Note extends BaseEntity {
 	@JoinColumn(name = "note_type_concept_id", nullable = false)
 	private Concept noteTypeConcept;
 
+	@ManyToOne
+	@JoinColumn(name = "note_class_concept_id", nullable = false)
+	private Concept noteClassConcept;
+
+	@Column(name = "note_title")
+	private String noteTitle;
+	
 	@Column(name = "note_text", nullable=false)
 	private String noteText;
 	
+	@ManyToOne
+	@JoinColumn(name = "encoding_concept_id", nullable = false)
+	private Concept encodingConcept;
+
+	@ManyToOne
+	@JoinColumn(name = "language_concept_id", nullable = false)
+	private Concept languageConcept;
+
 	@ManyToOne
 	@JoinColumn(name = "provider_id")
 	private Provider provider;
@@ -121,12 +136,44 @@ public class Note extends BaseEntity {
 		this.noteTypeConcept = noteTypeConcept;
 	}
 	
+	public Concept getNoteClassConcept() {
+		return noteClassConcept;
+	}
+	
+	public void setNoteClassConcept(Concept noteClassConcept) {
+		this.noteClassConcept = noteClassConcept;
+	}
+	
+	public String getNoteTitle() {
+		return noteTitle;
+	}
+	
+	public void setNoteTitle(String noteTitle) {
+		this.noteTitle = noteTitle;
+	}
+	
 	public String getNoteText() {
 		return noteText;
 	}
 	
 	public void setNoteText(String noteText) {
 		this.noteText = noteText;
+	}
+	
+	public Concept getEncodingConcept() {
+		return encodingConcept;
+	}
+	
+	public void setEncodingConcept(Concept encodingConcept) {
+		this.encodingConcept = encodingConcept;
+	}
+	
+	public Concept getLanguageConcept() {
+		return languageConcept;
+	}
+	
+	public void setLanguageConcept(Concept languageConcept) {
+		this.languageConcept = languageConcept;
 	}
 	
 	public Provider getProvider() {

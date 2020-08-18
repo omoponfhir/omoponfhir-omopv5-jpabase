@@ -26,8 +26,6 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
-import net.jcip.annotations.Immutable;
-
 @Entity
 @Table(name="concept_relationship")
 @Inheritance(strategy=InheritanceType.JOINED)
@@ -51,10 +49,10 @@ public class ConceptRelationship extends BaseEntity implements Serializable {
 //	@Column(name="relationship_id")
 //	private String relationshipId;
 	
-	@Column(name="valid_start_date")
+	@Column(name="valid_start_date", nullable=false)
 	private Date validStartDate;
 	
-	@Column(name="valid_end_date")
+	@Column(name="valid_end_date", nullable=false)
 	private Date validEndDate;
 	
 	@Column(name="invalid_reason")

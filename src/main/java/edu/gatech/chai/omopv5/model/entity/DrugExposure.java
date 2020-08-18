@@ -42,6 +42,47 @@ public class DrugExposure extends BaseEntity {
 	@Access(AccessType.PROPERTY)
 	private Long id;
 	
+	@ManyToOne
+	@JoinColumn(name = "person_id", nullable = false)
+	private FPerson fPerson;
+	
+	@ManyToOne
+	@JoinColumn(name = "drug_concept_id", nullable = false)
+	private Concept drugConcept;
+	
+	@Column(name ="drug_exposure_start_date", nullable = false)
+	@Temporal(TemporalType.DATE)
+	private Date drugExposureStartDate;
+	
+	@Column(name ="drug_exposure_start_datetime", nullable = false)
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date drugExposureStartDateTime;
+	
+	@Column(name ="drug_exposure_end_date", nullable = false)
+	@Temporal(TemporalType.DATE)
+	private Date drugExposureEndDate;
+	
+	@Column(name ="drug_exposure_end_datetime")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date drugExposureEndDateTime;
+	
+	@Column(name ="verbatim_end_date")
+	@Temporal(TemporalType.DATE)
+	private Date verbatimEndDate;
+	
+	@ManyToOne
+	@JoinColumn(name = "drug_type_concept_id", nullable = false)
+	private Concept drugTypeConcept;
+	
+	@Column(name = "stop_reason")
+	private String stopReason;
+
+	@Column(name = "refills")
+	private Integer refills;
+
+	@Column(name = "quantity")
+	private Double quantity;
+
 	@Column(name = "days_supply")
 	private Integer daysSupply;
 	
@@ -70,49 +111,12 @@ public class DrugExposure extends BaseEntity {
 	@JoinColumn(name = "drug_source_concept_id")
 	private Concept drugSourceConcept;
 	
-	@ManyToOne
-	@JoinColumn(name = "person_id", nullable = false)
-	private FPerson fPerson;
-	
 	@Column(name = "route_source_value")
 	private String routeSourceValue;
 	
 	@Column(name = "dose_unit_source_value")
 	private String doseUnitSourceValue;
 	
-	@ManyToOne
-	@JoinColumn(name = "drug_concept_id", nullable = false)
-	private Concept drugConcept;
-	
-	@Column(name ="drug_exposure_start_date", nullable = false)
-	@Temporal(TemporalType.DATE)
-	private Date drugExposureStartDate;
-	
-	@Column(name ="drug_exposure_start_datetime")
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date drugExposureStartDateTime;
-	
-	@Column(name ="drug_exposure_end_date")
-	@Temporal(TemporalType.DATE)
-	private Date drugExposureEndDate;
-	
-	@Column(name ="drug_exposure_end_datetime")
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date drugExposureEndDateTime;
-	
-	@ManyToOne
-	@JoinColumn(name = "drug_type_concept_id", nullable = false)
-	private Concept drugTypeConcept;
-	
-	@Column(name = "stop_reason")
-	private String stopReason;
-
-	@Column(name = "refills")
-	private Integer refills;
-
-	@Column(name = "quantity")
-	private Double quantity;
-
 	
 	public DrugExposure() {
 	}
@@ -127,6 +131,93 @@ public class DrugExposure extends BaseEntity {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public FPerson getFPerson() {
+		return this.fPerson;
+	}
+	
+	public void setFPerson(FPerson fPerson) {
+		this.fPerson = fPerson;
+	}
+	
+	public Concept getDrugConcept() {
+		return this.drugConcept;
+	}
+	
+	public void setDrugConcept(Concept drugConcept) {
+		this.drugConcept = drugConcept;
+	}
+	
+	public Date getDrugExposureStartDate() {
+		return this.drugExposureStartDate;
+	}
+
+	public void setDrugExposureStartDate(Date drugExposureStartDate) {
+		this.drugExposureStartDate = drugExposureStartDate;
+	}
+
+	public Date getDrugExposureStartDateTime() {
+		return this.drugExposureStartDateTime;
+	}
+
+	public void setDrugExposureStartDateTime(Date drugExposureStartDateTime) {
+		this.drugExposureStartDateTime = drugExposureStartDateTime;
+	}
+
+	public Date getDrugExposureEndDate() {
+		return this.drugExposureEndDate;
+	}
+
+	public void setDrugExposureEndDate(Date drugExposureEndDate) {
+		this.drugExposureEndDate = drugExposureEndDate;
+	}
+	
+	public Date getDrugExposureEndDateTime() {
+		return this.drugExposureEndDateTime;
+	}
+
+	public void setDrugExposureEndDateTime(Date drugExposureEndDateTime) {
+		this.drugExposureEndDateTime = drugExposureEndDateTime;
+	}
+	
+	public Date getVerbatimEndDate() {
+		return this.verbatimEndDate;
+	}
+
+	public void setVerbatimEndDate(Date verbatimEndDate) {
+		this.verbatimEndDate = verbatimEndDate;
+	}
+	
+	public Concept getDrugTypeConcept() {
+		return this.drugTypeConcept;
+	}
+
+	public void setDrugTypeConcept(Concept drugTypeConcept) {
+		this.drugTypeConcept = drugTypeConcept;
+	}
+	
+	public String getStopReason() {
+		return this.stopReason;
+	}
+	
+	public void setStopReason(String stopReason) {
+		this.stopReason = stopReason;
+	}
+
+	public Integer getRefills() {
+		return this.refills;
+	}
+	public void setRefills(Integer refills) {
+		this.refills = refills;
+	}
+
+	public Double getQuantity() {
+		return this.quantity;
+	}
+
+	public void setQuantity(Double quantity) {
+		this.quantity = quantity;
 	}
 
 	public Integer getDaysSupply() {
@@ -193,14 +284,6 @@ public class DrugExposure extends BaseEntity {
 		this.drugSourceConcept = drugSourceConcept;
 	}
 
-	public FPerson getFPerson() {
-		return this.fPerson;
-	}
-	
-	public void setFPerson(FPerson fPerson) {
-		this.fPerson = fPerson;
-	}
-	
 	public String getRouteSourceValue(){
 		return this.routeSourceValue;
 	}
@@ -217,76 +300,6 @@ public class DrugExposure extends BaseEntity {
 		this.doseUnitSourceValue = doseUnitSourceValue;
 	}
 	
-	public Concept getDrugConcept() {
-		return this.drugConcept;
-	}
-	
-	public void setDrugConcept(Concept drugConcept) {
-		this.drugConcept = drugConcept;
-	}
-	
-	public Date getDrugExposureStartDate() {
-		return this.drugExposureStartDate;
-	}
-
-	public void setDrugExposureStartDate(Date drugExposureStartDate) {
-		this.drugExposureStartDate = drugExposureStartDate;
-	}
-
-	public Date getDrugExposureStartDateTime() {
-		return this.drugExposureStartDateTime;
-	}
-
-	public void setDrugExposureStartDateTime(Date drugExposureStartDateTime) {
-		this.drugExposureStartDateTime = drugExposureStartDateTime;
-	}
-
-	public Date getDrugExposureEndDate() {
-		return this.drugExposureEndDate;
-	}
-
-	public void setDrugExposureEndDate(Date drugExposureEndDate) {
-		this.drugExposureEndDate = drugExposureEndDate;
-	}
-	
-	public Date getDrugExposureEndDateTime() {
-		return this.drugExposureEndDateTime;
-	}
-
-	public void setDrugExposureEndDateTime(Date drugExposureEndDateTime) {
-		this.drugExposureEndDateTime = drugExposureEndDateTime;
-	}
-	
-	public Concept getDrugTypeConcept() {
-		return this.drugTypeConcept;
-	}
-
-	public void setDrugTypeConcept(Concept drugTypeConcept) {
-		this.drugTypeConcept = drugTypeConcept;
-	}
-	
-	public String getStopReason() {
-		return this.stopReason;
-	}
-	
-	public void setStopReason(String stopReason) {
-		this.stopReason = stopReason;
-	}
-
-	public Integer getRefills() {
-		return this.refills;
-	}
-	public void setRefills(Integer refills) {
-		this.refills = refills;
-	}
-
-	public Double getQuantity() {
-		return this.quantity;
-	}
-
-	public void setQuantity(Double quantity) {
-		this.quantity = quantity;
-	}
 
 	@Override
 	public Long getIdAsLong() {

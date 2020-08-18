@@ -39,20 +39,20 @@ public class CareSite extends BaseEntity {
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="caresite_seq_gen")
 	@SequenceGenerator(name="caresite_seq_gen", sequenceName="caresite_id_seq", allocationSize=1)
-	@Column(name="care_site_id")
+	@Column(name="care_site_id", nullable=false)
 	@Access(AccessType.PROPERTY)
 	private Long id;
 	
-	@ManyToOne
-	@JoinColumn(name="location_id")
-	private Location location;
+	@Column(name="care_site_name")
+	private String careSiteName;
 	
 	@ManyToOne
 	@JoinColumn(name="place_of_service_concept_id")
 	private Concept placeOfServiceConcept;
 	
-	@Column(name="care_site_name")
-	private String careSiteName;
+	@ManyToOne
+	@JoinColumn(name="location_id")
+	private Location location;
 	
 	@Column(name="care_site_source_value")
 	private String careSiteSourceValue;

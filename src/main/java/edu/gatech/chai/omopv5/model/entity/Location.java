@@ -36,7 +36,7 @@ public class Location extends BaseEntity {
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="location_seq_gen")
 	@SequenceGenerator(name="location_seq_gen", sequenceName="location_id_seq", allocationSize=1)
-	@Column(name="location_id")
+	@Column(name="location_id", nullable = false)
 	@Access(AccessType.PROPERTY)
 	private Long id;
 	
@@ -54,6 +54,9 @@ public class Location extends BaseEntity {
 	
 	@Column(name="zip")
 	private String zip;
+	
+	@Column(name="county")
+	private String county;
 	
 	@Column(name="location_source_value")
 	private String locationSourceValue;
@@ -109,6 +112,14 @@ public class Location extends BaseEntity {
 	}
 
 	public void setZip(String zip) {
+		this.zip = zip;
+	}
+
+	public String getCounty() {
+		return zip;
+	}
+
+	public void setCounty(String zip) {
 		this.zip = zip;
 	}
 

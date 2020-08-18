@@ -13,24 +13,24 @@ import javax.persistence.Table;
 @Table(name="relationship")
 public class Relationship extends BaseEntity {
 	@Id
-	@Column(name="relationship_id")
+	@Column(name="relationship_id", nullable=false)
 	@Access(AccessType.PROPERTY)
 	private String id;
 
-	@Column(name="relationship_name")
-	private String name;
+	@Column(name="relationship_name", nullable=false)
+	private String relationshipName;
 
-	@Column(name="is_hierarchical")
+	@Column(name="is_hierarchical", nullable=false)
 	private Character isHierarchical;
 	
-	@Column(name="defines_ancestry")
+	@Column(name="defines_ancestry", nullable=false)
 	private Character definesAncestry;
 
-	@Column(name="reverse_relationship_id")
+	@Column(name="reverse_relationship_id", nullable=false)
 	private String reverseRelationshipId;
 
 	@ManyToOne
-	@JoinColumn(name="relationship_concept_id")
+	@JoinColumn(name="relationship_concept_id", nullable=false)
 	private Concept relationshipConcept;
 	
 	public Relationship() {
@@ -45,12 +45,12 @@ public class Relationship extends BaseEntity {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getRelationshipName() {
+		return relationshipName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setRelationshipName(String relationshipName) {
+		this.relationshipName = relationshipName;
 	}
 
 	public Character getIsHierarchical() {

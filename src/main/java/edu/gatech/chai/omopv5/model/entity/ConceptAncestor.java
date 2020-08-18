@@ -41,17 +41,17 @@ public class ConceptAncestor extends BaseEntity implements Serializable {
 
 	@Id
 	@ManyToOne
-	@JoinColumn(name="ancestor_concept_id")
+	@JoinColumn(name="ancestor_concept_id", nullable=false)
 	private Concept ancestorConcept;
 
 	@ManyToOne
-	@JoinColumn(name="descendant_concept_id")
+	@JoinColumn(name="descendant_concept_id", nullable=false)
 	private Concept descendantConcept;
 
-	@Column(name="min_levels_of_separation")
+	@Column(name="min_levels_of_separation", nullable=false)
 	private Integer minLevelsOfSeparation;
 	
-	@Column(name="max_levels_of_separation")
+	@Column(name="max_levels_of_separation", nullable=false)
 	private Integer maxLevelsOfSeparation;
 	
 	public Concept getAncestorConcept() {
