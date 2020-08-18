@@ -50,7 +50,7 @@ public class FactRelationshipServiceImp extends BaseEntityServiceImp<FactRelatio
 		if (results.size() > 0) {
 			for (FactRelationship result : results) {
 				
-				Long domainConcept2 = result.getDomainConcept2();
+				Long domainConcept2 = result.getDomainConceptId2();
 				Long fact2 = result.getFactId2();
 
 				if (domainConcept2 == 58L) {

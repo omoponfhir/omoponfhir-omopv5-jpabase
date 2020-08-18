@@ -39,17 +39,17 @@ public class Provider extends BaseEntity {
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="provider_seq_gen")
 	@SequenceGenerator(name="provider_seq_gen", sequenceName="provider_id_seq", allocationSize=1)
 
-	@Column(name="provider_id")
+	@Column(name="provider_id", nullable=false)
 	@Access(AccessType.PROPERTY)
 	private Long id;
 	
-	@Column(name="provider_name", length = 50)
+	@Column(name="provider_name")
 	private String providerName;
 
-	@Column(name="npi", length = 20)
+	@Column(name="npi")
 	private String npi;
 	
-	@Column(name="dea", length = 20)
+	@Column(name="dea")
 	private String dea;
 	
 	@ManyToOne
@@ -67,17 +67,17 @@ public class Provider extends BaseEntity {
 	@JoinColumn(name="gender_concept_id")
 	private Concept genderConcept;
 
-	@Column(name="provider_source_value", length = 50)
+	@Column(name="provider_source_value")
 	private String providerSourceValue;
 	
-	@Column(name="specialty_source_value", length = 50)
+	@Column(name="specialty_source_value")
 	private String specialtySourceValue;
 	
 	@ManyToOne
 	@JoinColumn(name="specialty_source_concept_id")
 	private Concept specialtySourceConcept;
 
-	@Column(name="gender_source_value", length = 50)
+	@Column(name="gender_source_value")
 	private String genderSourceValue;
 	
 	@ManyToOne
