@@ -50,19 +50,19 @@ public class VisitOccurrence extends BaseEntity {
 	private Concept visitConcept;
 	
 	@Column(name="visit_start_date", nullable=false)
-	private Date startDate;
+	private Date visitStartDate;
+
+	@Column(name="visit_start_datetime")
+	private Date visitStartDateTime;
 	
-	@Column(name="visit_start_time")
-	private String startTime;
-	
-	@Column(name="visit_end_date", nullable=false)
-	private Date endDate;
-	
-	@Column(name="visit_end_time")
-	private String endTime;
+	@Column(name="visit_end_date",nullable = false)
+	private Date visitEndDate;
+
+	@Column(name="visit_end_datetime")
+	private Date visitEndDateTime;
 	
 	@ManyToOne
-	@JoinColumn(name="visit_type_concept_id")
+	@JoinColumn(name="visit_type_concept_id",nullable = false)
 	private Concept visitTypeConcept;
 	
 	@ManyToOne()
@@ -112,36 +112,34 @@ public class VisitOccurrence extends BaseEntity {
 		this.visitConcept = visitConcept;
 	}
 	
-	public Date getStartDate() {
-		return startDate;
+	public Date getVisitStartDate() {
+		return visitStartDate;
 	}
 	
-	public void setStartDate(Date startDate) {
-		this.startDate = startDate;
+	public void setVisitStartDate(Date visitStartDate) {
+		this.visitStartDate = visitStartDate;
 	}
 	
-	public String getStartTime() {
-		return startTime;
+	public Date getVisitStartDateTime() {return visitStartDateTime;}
+	
+	public void setVisitStartDateTime(Date visitStartDateTime) {
+		this.visitStartDateTime = visitStartDateTime;
 	}
 	
-	public void setStartTime(String startTime) {
-		this.startTime = startTime;
+	public Date getVisitEndDate() {
+		return visitEndDate;
 	}
 	
-	public Date getEndDate() {
-		return endDate;
+	public void setVisitEndDate(Date visitEndDate) {
+		this.visitEndDate = visitEndDate;
 	}
 	
-	public void setEndDate(Date endDate) {
-		this.endDate = endDate;
+	public Date getVisitEndDateTime() {
+		return visitEndDateTime;
 	}
 	
-	public String getEndTime() {
-		return endTime;
-	}
-	
-	public void setEndTime(String endTime) {
-		this.endTime = endTime;
+	public void setVisitEndDateTime(Date visitEndDateTime) {
+		this.visitEndDateTime = visitEndDateTime;
 	}
 	
 	public Concept getVisitTypeConcept() {
