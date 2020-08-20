@@ -29,6 +29,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name="condition_occurrence")
@@ -47,17 +49,27 @@ public class ConditionOccurrence extends BaseEntity{
 
 	@ManyToOne
 	@JoinColumn(name = "condition_concept_id", nullable = false)
-	private Concept conceptId;
+	private Concept conditionConcept;
 	
 	@Column(name="condition_start_date", nullable = false)
-	private Date startDate;
+	@Temporal(TemporalType.DATE)
+	private Date conditionStartDate;
+
+	@Column(name="condition_start_datetime")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date conditionStartDateTime;
 
 	@Column(name="condition_end_date")
-	private Date endDate;
+	@Temporal(TemporalType.DATE)
+	private Date conditionEndDate;
+
+	@Column(name="condition_end_datetime")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date conditionEndDateTime;
 
 	@ManyToOne
 	@JoinColumn(name = "condition_type_concept_id", nullable = false)
-	private Concept typeConceptId;
+	private Concept conditionTypeConcept;
 
 	@Column(name="stop_reason")
 	private String stopReason;
@@ -75,7 +87,7 @@ public class ConditionOccurrence extends BaseEntity{
 
 	@ManyToOne
 	@JoinColumn(name = "condition_source_concept_id")
-	private Concept sourceConceptId;
+	private Concept conditionSourceConcept;
 
 
 	public Long getId() {
@@ -94,36 +106,42 @@ public class ConditionOccurrence extends BaseEntity{
 		this.fPerson = fPerson;
 	}
 
-	public Concept getConceptId() {
-		return conceptId;
+	public Concept getConditionConcept() {
+		return conditionConcept;
 	}
 
-	public void setConceptId(Concept conceptId) {
-		this.conceptId = conceptId;
+	public void setConditionConcept(Concept conditionConcept) {
+		this.conditionConcept = conditionConcept;
 	}
 
-	public Date getStartDate() {
-		return startDate;
+	public Date getConditionStartDateStartDate() {
+		return conditionStartDate;
 	}
 
-	public void setStartDate(Date startDate) {
-		this.startDate = startDate;
+	public void setConditionStartDate(Date conditionStartDate) {
+		this.conditionStartDate = conditionStartDate;
 	}
 
-	public Date getEndDate() {
-		return endDate;
+	public Date getConditionStartDateTime() {return conditionStartDateTime;}
+
+	public void setConditionStartDateTime(Date conditionStartDateTime) {this.conditionStartDateTime = conditionStartDateTime;}
+
+	public Date getConditionEndDate() {
+		return conditionEndDate;
 	}
 
-	public void setEndDate(Date endDate) {
-		this.endDate = endDate;
+	public void setConditionEndDate(Date conditionEndDate) {
+		this.conditionEndDate = conditionEndDate;
 	}
 
-	public Concept getTypeConceptId() {
-		return typeConceptId;
-	}
+	public Date getConditionEndDateTime() {return conditionEndDateTime;}
 
-	public void setTypeConceptId(Concept typeConceptId) {
-		this.typeConceptId = typeConceptId;
+	public void setConditionEndDateTime(Date conditionEndDateTime) {this.conditionEndDateTime = conditionEndDateTime;}
+
+	public Concept getConditionTypeConcept() {return conditionTypeConcept;}
+
+	public void setConditionTypeConcept(Concept conditionTypeConcept) {
+		this.conditionTypeConcept = conditionTypeConcept;
 	}
 
 	public String getStopReason() {
@@ -158,13 +176,11 @@ public class ConditionOccurrence extends BaseEntity{
 		this.conditionSourceValue = conditionSourceValue;
 	}
 
-	public Concept getSourceConceptId() {
-		return sourceConceptId;
+	public Concept getConditionSourceConcept() {
+		return conditionSourceConcept;
 	}
 
-	public void setSourceConceptId(Concept sourceConceptId) {
-		this.sourceConceptId = sourceConceptId;
-	}
+	public void setConditionSourceConcept(Concept conditionSourceConcept) {this.conditionSourceConcept = conditionSourceConcept;}
 
 	@Override
 	public Long getIdAsLong() {
