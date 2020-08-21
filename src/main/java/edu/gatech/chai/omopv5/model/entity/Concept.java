@@ -116,7 +116,7 @@ public class Concept extends BaseEntity {
 	}
 
 	public void setConceptName(String conceptName) {
-		this.name = conceptName;
+		this.conceptName = conceptName;
 	}
 
 	public String getDomain() {
