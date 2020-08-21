@@ -40,7 +40,7 @@ public class Concept extends BaseEntity {
 	private Long id;
 
 	@Column(name = "concept_name")
-	private String name;
+	private String conceptName;
 
 //	@ManyToOne
 //	@JoinColumn(name="domain_id", referencedColumnName="domain_id", insertable=false, updatable=false)
@@ -82,17 +82,17 @@ public class Concept extends BaseEntity {
 		this.id = id;
 	}
 
-	public Concept(Long id, String name) {
+	public Concept(Long id, String conceptName) {
 		super();
 		this.id = id;
-		this.name = name;
+		this.conceptName = conceptName;
 	}
 
-	public Concept(Long id, String name, String domain, String conceptClass, Character standardConcept,
+	public Concept(Long id, String conceptName, String domain, String conceptClass, Character standardConcept,
 			String vocabulary, String conceptCode, Date validStartDate, Date validEndDate, String invalidReason) {
 		super();
 		this.id = id;
-		this.name = name;
+		this.conceptName = conceptName;
 		this.domain = domain;
 		this.conceptClass = conceptClass;
 		this.standardConcept = standardConcept;
@@ -111,12 +111,12 @@ public class Concept extends BaseEntity {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getConceptName() {
+		return conceptName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setConceptName(String conceptName) {
+		this.name = conceptName;
 	}
 
 	public String getDomain() {
@@ -187,7 +187,7 @@ public class Concept extends BaseEntity {
 	public String toString() {
 		// Since this is an omop v.4 based model, all the information below is expected
 		// to be not null.
-		return this.getId() + ", " + this.getName() + ", " + this.getDomain() + ", " + this.getConceptClass() + ", "
+		return this.getId() + ", " + this.getConceptName() + ", " + this.getDomain() + ", " + this.getConceptClass() + ", "
 				+ this.getStandardConcept() + ", " + this.getVocabulary() + ", " + this.getConceptCode() + ", "
 				+ this.getValidStartDate() + ", " + this.getValidEndDate();
 	}

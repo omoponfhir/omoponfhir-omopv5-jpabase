@@ -42,7 +42,7 @@ public class Vocabulary extends BaseEntity {
 	private String id;
 	
 	@Column(name="vocabulary_name")
-	private String name;
+	private String vocabularyName;
 	
 	@Column(name="vocabulary_reference")
 	private String vocabularyReference;
@@ -63,10 +63,10 @@ public class Vocabulary extends BaseEntity {
 		this.id = id;
 	}
 	
-	public Vocabulary(String id, String name) {
+	public Vocabulary(String id, String vocabularyName) {
 		super();
 		this.id = id;
-		this.name = name;
+		this.vocabularyName = vocabularyName;
 	}
 
 	public String getId() {
@@ -77,12 +77,12 @@ public class Vocabulary extends BaseEntity {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getVocabularyName() {
+		return vocabularyName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setVocabularyName(String vocabularyName) {
+		this.vocabularyName = vocabularyName;
 	}
 
 	public String getVocabularyReference() {
