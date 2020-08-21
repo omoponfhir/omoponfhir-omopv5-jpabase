@@ -114,7 +114,7 @@ public class ConditionOccurrence extends BaseEntity{
 		this.conditionConcept = conditionConcept;
 	}
 
-	public Date getConditionStartDateStartDate() {
+	public Date getConditionStartDate() {
 		return conditionStartDate;
 	}
 
