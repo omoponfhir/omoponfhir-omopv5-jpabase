@@ -59,23 +59,38 @@ public class FObservationView extends BaseEntity {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date observationDateTime;
 
-	@Column(name = "observation_time")
-	private String observationTime;
+	@ManyToOne(cascade = { CascadeType.MERGE })
+	@JoinColumn(name = "observation_type_concept_id", nullable = false)
+	private Concept observationTypeConcept;
 
-	@Column(name = "value_as_string")
-	private String valueAsString;
+	@ManyToOne(cascade = { CascadeType.MERGE }, fetch=FetchType.LAZY)
+	@JoinColumn(name = "observation_operator_concept_id")
+	private Concept observationOperatorConcept;
 
 	@Column(name = "value_as_number")
 	private Double valueAsNumber;
+
+	@Column(name = "value_as_string")
+	private String valueAsString;
 
 	@ManyToOne(cascade = { CascadeType.MERGE })
 	@JoinColumn(name = "value_as_concept_id")
 	private Concept valueAsConcept;
 
-	@ManyToOne(cascade = { CascadeType.MERGE })
-	@JoinColumn(name = "observation_type_concept_id", nullable = false)
-	private Concept observationTypeConcept;
+	@ManyToOne(cascade = { CascadeType.MERGE }, fetch=FetchType.LAZY)
+	@JoinColumn(name = "qualifier_concept_id")
+	private Concept qualifierConcept;
 
+	@ManyToOne(cascade = { CascadeType.MERGE })
+	@JoinColumn(name = "unit_concept_id")
+	private Concept unitConcept;
+
+	@Column(name = "range_low")
+	private BigDecimal rangeLow;
+
+	@Column(name = "range_high")
+	private BigDecimal rangeHigh;
+	
 	@ManyToOne(cascade = { CascadeType.MERGE })
 	@JoinColumn(name = "provider_id")
 	private Provider provider;
@@ -91,32 +106,14 @@ public class FObservationView extends BaseEntity {
 	@JoinColumn(name = "observation_source_concept_id")
 	private Concept observationSourceConcept;
 
-	@ManyToOne(cascade = { CascadeType.MERGE }, fetch=FetchType.LAZY)
-	@JoinColumn(name = "qualifier_concept_id")
-	private Concept qualifierConcept;
-
-	@Column(name = "qualifier_source_value")
-	private String qualifierSourceValue;
-
-	@ManyToOne(cascade = { CascadeType.MERGE })
-	@JoinColumn(name = "unit_concept_id")
-	private Concept unitConcept;
-
 	@Column(name = "unit_source_value")
 	private String unitSourceValue;
 
-	@Column(name = "range_low")
-	private BigDecimal rangeLow;
-
-	@Column(name = "range_high")
-	private BigDecimal rangeHigh;
-	
 	@Column(name = "value_source_value")
 	private String valueSourceValue;
 
-	@ManyToOne(cascade = { CascadeType.MERGE }, fetch=FetchType.LAZY)
-	@JoinColumn(name = "observation_operator_concept_id")
-	private Concept observationOperatorConcept;
+	@Column(name = "qualifier_source_value")
+	private String qualifierSourceValue;
 
 	public Long getId() {
 		return id;
@@ -156,14 +153,6 @@ public class FObservationView extends BaseEntity {
 
 	public void setObsdrvationDateTime(Date observationDateTime) {
 		this.observationDateTime = observationDateTime;
-	}
-
-	public String getObservationTime() {
-		return observationTime;
-	}
-
-	public void setObsdrvationTime(String observationTime) {
-		this.observationTime = observationTime;
 	}
 
 	public String getValueAsString() {
