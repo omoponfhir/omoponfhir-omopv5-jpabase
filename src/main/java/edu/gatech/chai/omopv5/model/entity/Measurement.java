@@ -111,7 +111,7 @@ public class Measurement extends BaseEntity {
 
 	@ManyToOne
 	@JoinColumn(name="measurement_source_concept_id")
-	private Concept measurementSourceValueConcept; 
+	private Concept measurementSourceConcept; 
 
 	@Column(name="unit_source_value")
 	private String unitSourceValue; 
@@ -255,12 +255,12 @@ public class Measurement extends BaseEntity {
 		this.measurementSourceValue = measurementSourceValue;
 	}
 
-	public Concept getMeasurementSourceValueConcept() {
-		return measurementSourceValueConcept;
+	public Concept getMeasurementSourceConcept() {
+		return measurementSourceConcept;
 	}
 	
-	public void setMeasurementSourceValueConcept(Concept measurementSourceValueConcept) {
-		this.measurementSourceValueConcept = measurementSourceValueConcept;
+	public void setMeasurementSourceConcept(Concept measurementSourceConcept) {
+		this.measurementSourceConcept = measurementSourceConcept;
 	}
 
 	public String getUnitSourceValue() {
