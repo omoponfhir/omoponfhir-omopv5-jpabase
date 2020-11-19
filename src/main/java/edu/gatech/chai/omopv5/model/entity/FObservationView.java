@@ -59,9 +59,9 @@ public class FObservationView extends BaseEntity {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date observationDateTime;
 
-	@Column(name = "observation_time")
-	private String observationTime;
-
+//	@Column(name = "observation_time")
+//	private String observationTime;
+//
 	@Column(name = "value_as_string")
 	private String valueAsString;
 
@@ -158,14 +158,14 @@ public class FObservationView extends BaseEntity {
 		this.observationDateTime = observationDateTime;
 	}
 
-	public String getObservationTime() {
-		return observationTime;
-	}
-
-	public void setObsdrvationTime(String observationTime) {
-		this.observationTime = observationTime;
-	}
-
+//	public String getObservationTime() {
+//		return observationTime;
+//	}
+//
+//	public void setObsdrvationTime(String observationTime) {
+//		this.observationTime = observationTime;
+//	}
+//
 	public String getValueAsString() {
 		return valueAsString;
 	}
