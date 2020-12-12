@@ -159,11 +159,11 @@ public class Measurement extends BaseEntity {
 		this.measurementDateTime = measurementDateTime;
 	}
 	
-	public String getTime() {
+	public String getMeasurementTime() {
 		return measurementTime;
 	}
 	
-	public void setTime(String measurementTime) {
+	public void setMeasurementTime(String measurementTime) {
 		this.measurementTime = measurementTime;
 	}
 	
