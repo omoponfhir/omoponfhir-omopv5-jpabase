@@ -22,6 +22,7 @@ import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -74,25 +75,25 @@ public class ConditionOccurrence extends BaseEntity{
 	@Column(name="stop_reason")
 	private String stopReason;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "provider_id")
 	private Provider provider;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "visit_occurrence_id")
 	private VisitOccurrence visitOccurrence;
 
 	@Column(name="condition_source_value")
 	private String conditionSourceValue;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "condition_source_concept_id")
 	private Concept conditionSourceConcept;
 
 	@Column(name="condition_status_source_value")
 	private String conditionStatusSourceValue;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "condition_status_concept_id")
 	private Concept conditionStatusConcept;
 
