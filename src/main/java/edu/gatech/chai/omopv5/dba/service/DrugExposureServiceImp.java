@@ -16,7 +16,16 @@
  *******************************************************************************/
 package edu.gatech.chai.omopv5.dba.service;
 
+import java.util.List;
+import java.util.Map;
+
+import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import edu.gatech.chai.omopv5.jpa.dao.DrugExposureDao;
 import edu.gatech.chai.omopv5.model.entity.DrugExposure;
@@ -28,7 +37,8 @@ import edu.gatech.chai.omopv5.model.entity.DrugExposure;
 @Service
 public class DrugExposureServiceImp extends BaseEntityServiceImp<DrugExposure, DrugExposureDao>
 		implements DrugExposureService {
-	
+	final static Logger logger = LoggerFactory.getLogger(DrugExposureServiceImp.class);
+			
 	/**
 	 * Instantiates a new drug exposure service imp.
 	 */
