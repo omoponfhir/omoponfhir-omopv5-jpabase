@@ -91,7 +91,7 @@ public class FObservationView extends BaseEntity {
 	@Column(name = "range_high")
 	private BigDecimal rangeHigh;
 	
-	@ManyToOne(cascade = { CascadeType.MERGE })
+	@ManyToOne(cascade = { CascadeType.MERGE }, fetch=FetchType.LAZY)
 	@JoinColumn(name = "provider_id")
 	private Provider provider;
 
