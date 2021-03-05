@@ -108,7 +108,7 @@ public class DrugExposure extends BaseEntity {
 	@Column(name = "drug_source_value")
 	private String drugSourceValue;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "drug_source_concept_id")
 	private Concept drugSourceConcept;
 	
