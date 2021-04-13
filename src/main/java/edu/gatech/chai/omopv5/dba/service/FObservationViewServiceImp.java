@@ -66,4 +66,23 @@ public class FObservationViewServiceImp extends BaseEntityServiceImp<FObservatio
 			return null;
 		}
 	}
+	public FObservationView findDiastolic(Long conceptId, Long personId, Date date, Date dateTime) {
+		EntityManager em = getEntityDao().getEntityManager();
+		CriteriaBuilder builder = em.getCriteriaBuilder();
+		CriteriaQuery<FObservationView> criteria = builder.createQuery(FObservationView.class);
+		Root<FObservationView> from = criteria.from(FObservationView.class);
+		criteria.select(from).where(
+				builder.equal(from.get("observationConcept").get("id"), conceptId),
+				builder.equal(from.get("fPerson").get("id"), personId),
+				builder.equal(from.get("date"), date),
+				builder.equal(from.get("dateTime"),  dateTime)
+		);
+		TypedQuery<FObservationView> query = em.createQuery(criteria);
+		List<FObservationView> results = query.getResultList();
+		if (results.size() > 0) {
+			return results.get(0);
+		} else {
+			return null;
+		}
+	}
 }

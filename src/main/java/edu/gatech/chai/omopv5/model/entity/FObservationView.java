@@ -53,11 +53,11 @@ public class FObservationView extends BaseEntity {
 
 	@Column(name = "observation_date", nullable = false)
 	@Temporal(TemporalType.DATE)
-	private Date date;
+	private Date observationDate;
 
-	@Column(name = "observation_time")
+	@Column(name = "observation_datetime")
 	// @Temporal(TemporalType.TIME)
-	private String time;
+	private Date observationDateTime;
 
 	@Column(name = "value_as_string")
 	private String valueAsString;
@@ -71,7 +71,7 @@ public class FObservationView extends BaseEntity {
 
 	@ManyToOne(cascade = { CascadeType.MERGE })
 	@JoinColumn(name = "observation_type_concept_id", nullable = false)
-	private Concept typeConcept;
+	private Concept observationTypeConcept;
 
 	@ManyToOne(cascade = { CascadeType.MERGE })
 	@JoinColumn(name = "provider_id")
@@ -81,12 +81,12 @@ public class FObservationView extends BaseEntity {
 	@JoinColumn(name = "visit_occurrence_id")
 	private VisitOccurrence visitOccurrence;
 
-	@Column(name = "source_value")
-	private String sourceValue;
+	@Column(name = "observation_source_value")
+	private String observationSourceValue;
 
 	@ManyToOne(cascade = { CascadeType.MERGE }, fetch=FetchType.LAZY)
-	@JoinColumn(name = "source_concept_id")
-	private Concept sourceConcept;
+	@JoinColumn(name = "observation_source_concept_id")
+	private Concept observationSourceConcept;
 
 	@ManyToOne(cascade = { CascadeType.MERGE }, fetch=FetchType.LAZY)
 	@JoinColumn(name = "qualifier_concept_id")
@@ -113,7 +113,7 @@ public class FObservationView extends BaseEntity {
 
 	@ManyToOne(cascade = { CascadeType.MERGE }, fetch=FetchType.LAZY)
 	@JoinColumn(name = "observation_operator_concept_id")
-	private Concept operatorConcept;
+	private Concept observationOperatorConcept;
 
 	public Long getId() {
 		return id;
@@ -123,12 +123,12 @@ public class FObservationView extends BaseEntity {
 		this.id = id;
 	}
 
-	public String getTime() {
-		return time;
+	public Date getObservationDateTime() {
+		return observationDateTime;
 	}
 
-	public void setTime(String time) {
-		this.time = time;
+	public void setTime(Date observationDateTime) {
+		this.observationDateTime = observationDateTime;
 	}
 
 	public FPerson getFPerson() {
@@ -147,12 +147,12 @@ public class FObservationView extends BaseEntity {
 		this.observationConcept = observationConcept;
 	}
 
-	public Date getDate() {
-		return date;
+	public Date getObservationDate() {
+		return observationDate;
 	}
 
-	public void setDate(Date date) {
-		this.date = date;
+	public void setObservationDate(Date observationDate) {
+		this.observationDate = observationDate;
 	}
 
 	public String getValueAsString() {
@@ -179,13 +179,11 @@ public class FObservationView extends BaseEntity {
 		this.valueAsConcept = valueAsConcept;
 	}
 
-	public Concept getTypeConcept() {
-		return typeConcept;
+	public Concept getObservationTypeConcept() {
+		return observationTypeConcept;
 	}
 
-	public void setTypeConcept(Concept typeConcept) {
-		this.typeConcept = typeConcept;
-	}
+	public void setObservationTypeConcept(Concept observationTypeConcept) {this.observationTypeConcept = observationTypeConcept;}
 
 	public Provider getProvider() {
 		return provider;
@@ -219,21 +217,17 @@ public class FObservationView extends BaseEntity {
 		this.qualifierSourceValue = qualifierSourceValue;
 	}
 	
-	public String getSourceValue() {
-		return sourceValue;
+	public String getObservationSourceValue() {
+		return observationSourceValue;
 	}
 
-	public void setSourceValue(String sourceValue) {
-		this.sourceValue = sourceValue;
-	}
+	public void setObservationSourceValue(String observationSourceValue) {this.observationSourceValue = observationSourceValue;}
 
-	public Concept getSourceConcept() {
-		return sourceConcept;
+	public Concept getObservationSourceConcept() {
+		return observationSourceConcept;
 	}
 	
-	public void setSourceConcept(Concept sourceConcept) {
-		this.sourceConcept = sourceConcept;
-	}
+	public void setObservationSourceConcept(Concept observationSourceConcept) {this.observationSourceConcept = observationSourceConcept;}
 	
 	public Concept getUnitConcept() {
 		return unitConcept;
@@ -275,13 +269,11 @@ public class FObservationView extends BaseEntity {
 		this.valueSourceValue = valueSourceValue;
 	}
 
-	public Concept getOperatorConcept() {
-		return operatorConcept;
+	public Concept getObservationOperatorConcept() {
+		return observationOperatorConcept;
 	}
 
-	public void setOperatorConcept(Concept operatorConcept) {
-		this.operatorConcept = operatorConcept;
-	}
+	public void setObservationOperatorConcept(Concept observationOperatorConcept) {this.observationOperatorConcept = observationOperatorConcept;}
 
 	@Override
 	public Long getIdAsLong() {

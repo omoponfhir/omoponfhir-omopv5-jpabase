@@ -39,11 +39,11 @@ public class Provider extends BaseEntity {
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="provider_seq_gen")
 	@SequenceGenerator(name="provider_seq_gen", sequenceName="provider_id_seq", allocationSize=1)
 
-	@Column(name="provider_id")
+	@Column(name="provider_id",nullable =false)
 	@Access(AccessType.PROPERTY)
 	private Long id;
 	
-	@Column(name="provider_name", length = 50)
+	@Column(name="provider_name")
 	private String providerName;
 
 	@Column(name="npi", length = 20)

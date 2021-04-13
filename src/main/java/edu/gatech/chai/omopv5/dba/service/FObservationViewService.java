@@ -39,5 +39,6 @@ public interface FObservationViewService extends IService<FObservationView> {
 	 * @return the f observation view
 	 */
 	public FObservationView findDiastolic (Long conceptId, Long personId, Date date, String time);
+	public FObservationView findDiastolic (Long conceptId, Long personId, Date date, Date dateTime);
 
 }
