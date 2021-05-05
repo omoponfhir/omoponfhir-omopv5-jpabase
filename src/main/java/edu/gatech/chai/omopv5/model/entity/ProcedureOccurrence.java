@@ -22,6 +22,7 @@ import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -81,7 +82,7 @@ public class ProcedureOccurrence extends BaseEntity {
 	@JoinColumn(name = "provider_id")
 	private Provider provider;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "visit_occurrence_id")
 	private VisitOccurrence visitOccurrence;
 
@@ -92,7 +93,7 @@ public class ProcedureOccurrence extends BaseEntity {
 	@Column(name = "procedure_source_value")
 	private String procedureSourceValue;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "procedure_source_concept_id")
 	private Concept procedureSourceConcept;
 

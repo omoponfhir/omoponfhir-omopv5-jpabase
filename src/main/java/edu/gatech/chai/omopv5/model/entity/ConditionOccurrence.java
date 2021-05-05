@@ -79,7 +79,7 @@ public class ConditionOccurrence extends BaseEntity{
 	@JoinColumn(name = "provider_id")
 	private Provider provider;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "visit_occurrence_id")
 	private VisitOccurrence visitOccurrence;
 
@@ -90,14 +90,14 @@ public class ConditionOccurrence extends BaseEntity{
 	@Column(name="condition_source_value")
 	private String conditionSourceValue;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "condition_source_concept_id")
 	private Concept conditionSourceConcept;
 
 	@Column(name="condition_status_source_value")
 	private String conditionStatusSourceValue;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "condition_status_concept_id")
 	private Concept conditionStatusConcept;
 

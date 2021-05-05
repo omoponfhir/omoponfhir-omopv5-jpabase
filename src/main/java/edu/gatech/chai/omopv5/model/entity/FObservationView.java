@@ -76,7 +76,7 @@ public class FObservationView extends BaseEntity {
 	@JoinColumn(name = "observation_type_concept_id", nullable = false)
 	private Concept observationTypeConcept;
 
-	@ManyToOne(cascade = { CascadeType.MERGE })
+	@ManyToOne(cascade = { CascadeType.MERGE }, fetch=FetchType.LAZY)
 	@JoinColumn(name = "provider_id")
 	private Provider provider;
 
